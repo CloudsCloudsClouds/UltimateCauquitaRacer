@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://tdk2l2bb785u"
+path="res://.godot/imported/item-coin-bronze.obj-00368a1ae68b59f6285109759d9aa911.mesh"
+
+[deps]
+
+files=["res://.godot/imported/item-coin-bronze.obj-00368a1ae68b59f6285109759d9aa911.mesh"]
+
+source_file="res://assets/pista-de-carreras/src/assets/Models/OBJ format/item-coin-bronze.obj"
+dest_files=["res://.godot/imported/item-coin-bronze.obj-00368a1ae68b59f6285109759d9aa911.mesh", "res://.godot/imported/item-coin-bronze.obj-00368a1ae68b59f6285109759d9aa911.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
