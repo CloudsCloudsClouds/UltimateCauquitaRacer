@@ -34,3 +34,4 @@ shape = SubResource("BoxShape3D_s8sy0")
 
 [node name="Car" parent="." instance=ExtResource("1_27c0p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 591.0943, 3.4483318, 0)
+acceleration = 1000.0

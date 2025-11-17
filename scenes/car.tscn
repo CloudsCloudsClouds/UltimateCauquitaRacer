@@ -54,6 +54,7 @@ size = Vector2(0.4, 1)
 mass = 70.0
 script = ExtResource("1_qt2eu")
 wheels = [NodePath("WheelFL"), NodePath("WheelRL"), NodePath("WheelFR"), NodePath("WheelRR")]
+max_speed = 50.0
 accel_curve = SubResource("Curve_s8sy0")
 skid_marks = [NodePath("SkidMaks/GPUParticles3D"), NodePath("SkidMaks/GPUParticles3D2"), NodePath("SkidMaks/GPUParticles3D3"), NodePath("SkidMaks/GPUParticles3D4")]
 
