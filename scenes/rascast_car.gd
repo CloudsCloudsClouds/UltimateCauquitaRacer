@@ -1,3 +1,6 @@
+# Ahora dependes tambien del servidor multijugador, eso se configura al inicio nomas
+# Pero como podria ponerte a jugar en single player????
+
 extends RigidBody3D
 
 @export var wheels: Array[RaycastWheel]
@@ -22,8 +25,6 @@ signal leave
 func init(player_num: int, device: int):
 	player = player_num
 	input = DeviceInput.new(device)
-
-
 
 func _ready() -> void:
 	# Centro de masa más bajo → coche mucho más estable
