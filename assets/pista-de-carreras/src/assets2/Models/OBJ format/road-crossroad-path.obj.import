@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bxc4lu2day58u"
+path="res://.godot/imported/road-crossroad-path.obj-c89aee091605a62ec7123e071fb2d6cd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/road-crossroad-path.obj-c89aee091605a62ec7123e071fb2d6cd.mesh"]
+
+source_file="res://assets/pista-de-carreras/src/assets2/Models/OBJ format/road-crossroad-path.obj"
+dest_files=["res://.godot/imported/road-crossroad-path.obj-c89aee091605a62ec7123e071fb2d6cd.mesh", "res://.godot/imported/road-crossroad-path.obj-c89aee091605a62ec7123e071fb2d6cd.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
