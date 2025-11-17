@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b5xnf5n01cinc"
+path="res://.godot/imported/tile-low.obj-debf66fb485d97ee4ca8d5903e223288.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tile-low.obj-debf66fb485d97ee4ca8d5903e223288.mesh"]
+
+source_file="res://assets/pista-de-carreras/src/assets2/Models/OBJ format/tile-low.obj"
+dest_files=["res://.godot/imported/tile-low.obj-debf66fb485d97ee4ca8d5903e223288.mesh", "res://.godot/imported/tile-low.obj-debf66fb485d97ee4ca8d5903e223288.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

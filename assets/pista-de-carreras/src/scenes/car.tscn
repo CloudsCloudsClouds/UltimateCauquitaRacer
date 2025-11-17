@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp3hljeso2fci"]
+
+[ext_resource type="Script" uid="uid://dpn0jlw3gw4qq" path="res://assets/pista-de-carreras/src/scenes/car.gd" id="1_0l66s"]
+[ext_resource type="PackedScene" uid="uid://citsnpwy2i237" path="res://assets/pista-de-carreras/src/assets/Models/GLB format/minilast.glb" id="2_yxv0n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yxv0n"]
+size = Vector3(0.282226, 0.172175, 0.859462)
+
+[node name="vehicle" type="VehicleBody3D"]
+mass = 300.0
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 1, 0)
+script = ExtResource("1_0l66s")
+
+[node name="minilast" parent="." instance=ExtResource("2_yxv0n")]
+transform = Transform3D(1.91175e-09, 0, -0.114746, 0, 0.14676, 0, 0.160316, 0, 1.36833e-09, -0.000574678, 0.0138913, 0.0336486)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0.000872665, 0, -0.000872665, 1, 0, 0, 0, 1, -0.00754591, 0.334463, 0.0244561)
+shape = SubResource("BoxShape3D_yxv0n")
+
+[node name="giro1" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.119058, 0.0951736, -0.216605)
+use_as_steering = true
+wheel_radius = 0.085
+suspension_stiffness = 200.0
+
+[node name="giro2" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.105503, 0.0951736, -0.222051)
+use_as_steering = true
+wheel_radius = 0.085
+suspension_stiffness = 200.0
+
+[node name="trac1" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.119058, 0.0951736, 0.308741)
+use_as_traction = true
+wheel_radius = 0.085
+suspension_stiffness = 200.0
+
+[node name="trac2" type="VehicleWheel3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.105503, 0.0951736, 0.308741)
+use_as_traction = true
+wheel_radius = 0.085
+suspension_stiffness = 200.0
