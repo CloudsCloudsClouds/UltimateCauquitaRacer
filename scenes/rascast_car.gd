@@ -2,7 +2,7 @@ extends RigidBody3D
 
 @export var wheels: Array[RaycastWheel]
 @export var acceleration := 600.0
-@export var max_speed := 20.0 
+@export var max_speed := 20.0
 @export var accel_curve : Curve
 
 var motor_input := 0
@@ -14,12 +14,27 @@ var hand_break := false
 var is_slipping := false
 @export var skid_marks : Array[GPUParticles3D]
 
+@export var player: int
+var input: DeviceInput
+
+signal leave
+
+func init(player_num: int, device: int):
+	player = player_num
+	input = DeviceInput.new(device)
+
+
 
 func _ready() -> void:
 	# Centro de masa más bajo → coche mucho más estable
 	center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
 	center_of_mass = Vector3(0.0, -0.5, 0.0)
 
+"""
+Esto solia funcionar ok, pero ahora que como que somos multijugador, no podemos confiar en que
+el nombre del input se maneje aqui.
+
+Esto se mueve a una funcion dedicada.
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("handbreak"):
@@ -40,11 +55,33 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_released("decelerate"):
 		if not Input.is_action_pressed("accelerate"):
 			motor_input = 0
+"""
+
+func get_input() -> void:
+	if input.is_action_pressed("handbreak"):
+		hand_break = true
+		is_slipping = true
+	elif input.is_action_released("handbreak"):
+		hand_break = false
+
+	if input.is_action_pressed("accelerate"):
+		motor_input = 1
+	elif input.is_action_released("accelerate"):
+		# solo soltamos si no estamos frenando
+		if not Input.is_action_pressed("decelerate"):
+			motor_input = 0
+
+	if input.is_action_pressed("decelerate"):
+		motor_input = -1
+	elif input.is_action_released("decelerate"):
+		if not Input.is_action_pressed("accelerate"):
+			motor_input = 0
+
 
 
 func _basic_steering_rotation(delta: float) -> void:
 	var turn_input := Input.get_axis("turn_right", "turn_left") * tire_turn_speed
-	
+
 	if turn_input != 0.0:
 		$WheelFL.rotation.y = clampf(
 			$WheelFL.rotation.y + turn_input * delta,
@@ -75,6 +112,8 @@ func _physics_process(delta: float) -> void:
 
 		id += 1
 	# El centro de masa ya está fijado en _ready()
+	if input.is_action_just_pressed("join"):
+		emit_signal("leave")
 
 
 func _get_point_velocity(point: Vector3) -> Vector3:
@@ -122,7 +161,7 @@ func _do_single_wheel_traccion(ray: RaycastWheel, idx: int) -> void:
 	var f_vel := forward_dir.dot(tire_vel)
 	var z_traction := 0.05
 	var z_force := -forward_dir * f_vel * z_traction * base
-	
+
 	var force_pos := ray.wheel.global_position - global_position
 	apply_force(x_force, force_pos)
 	apply_force(z_force, force_pos)
@@ -134,11 +173,11 @@ func _do_single_wheel_acceleration(ray: RaycastWheel, delta: float) -> void:
 
 	# Giro visual de la rueda
 	ray.wheel.rotate_x((-vel * delta) / ray.wheel_radius)
-	
+
 	if ray.is_motor && motor_input != 0:
 		var contact := ray.wheel.global_position
 		var force_pos := contact - global_position
-		
+
 		var speed_ratio := clampf(vel / max_speed, -1.0, 1.0)
 		var ac := accel_curve.sample_baked(absf(speed_ratio))
 		var force_vector := forward_dir * acceleration * motor_input * ac
