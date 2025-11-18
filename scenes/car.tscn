@@ -128,23 +128,27 @@ mesh = SubResource("CylinderMesh_yo124")
 [node name="GPUParticles3D" type="GPUParticles3D" parent="SkidMaks"]
 transform = Transform3D(1, 0, 0, 0, 0.03619019, 0.99934494, 0, -0.99934494, 0.03619019, -1.0702695, -0.29950702, 1.951827)
 emitting = false
+amount = 32
 process_material = SubResource("ParticleProcessMaterial_s8sy0")
 draw_pass_1 = SubResource("QuadMesh_g86do")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="SkidMaks"]
 transform = Transform3D(1, 0, 0, 0, 0.03619019, 0.99934494, 0, -0.99934494, 0.03619019, 1.1198575, -0.17214274, 2.0350018)
 emitting = false
+amount = 32
 process_material = SubResource("ParticleProcessMaterial_s8sy0")
 draw_pass_1 = SubResource("QuadMesh_g86do")
 
 [node name="GPUParticles3D3" type="GPUParticles3D" parent="SkidMaks"]
 transform = Transform3D(1, 0, 0, 0, 0.03619019, 0.99934494, 0, -0.99934494, 0.03619019, 1.0768523, -0.3568493, -0.8972442)
 emitting = false
+amount = 32
 process_material = SubResource("ParticleProcessMaterial_s8sy0")
 draw_pass_1 = SubResource("QuadMesh_g86do")
 
 [node name="GPUParticles3D4" type="GPUParticles3D" parent="SkidMaks"]
 transform = Transform3D(1, 0, 0, 0, 0.03619019, 0.99934494, 0, -0.99934494, 0.03619019, -1.0952772, -0.3706261, -1.0674756)
 emitting = false
+amount = 32
 process_material = SubResource("ParticleProcessMaterial_s8sy0")
 draw_pass_1 = SubResource("QuadMesh_g86do")
