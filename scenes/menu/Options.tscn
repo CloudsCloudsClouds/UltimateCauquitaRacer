@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=3 uid="uid://csw7ls6lu0xc8"]
+
+[ext_resource type="Script" uid="uid://irejm1k0sups" path="res://scenes/menu/options.gd" id="1_iyjud"]
+[ext_resource type="Texture2D" uid="uid://ojem2jg8358h" path="res://scenes/menu/imagenes/illinami_pixel.png" id="2_iyjud"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mcvr8"]
+bg_color = Color(0.5529412, 0.3882353, 0.95686275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0arn"]
+bg_color = Color(0.85490197, 0.2901961, 0.41568628, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_037ec"]
+bg_color = Color(0.10980392, 0.5411765, 0.8627451, 1)
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iyjud")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3593631, 0.36748037, 0.41627994, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_iyjud")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.5
+offset_top = -102.5
+offset_right = 182.5
+offset_bottom = 102.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 22
+
+[node name="Volumen" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_mcvr8")
+text = "VOLUMEN
+"
+
+[node name="Resolution" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_e0arn")
+text = "RESOLUCION
+"
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_037ec")
+text = "ATRAS"
+
+[connection signal="pressed" from="VBoxContainer/Volumen" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Resolution" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_quit_pressed"]
