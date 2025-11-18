@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://dtglmmwdyn5ic"]
+[gd_scene load_steps=6 format=3 uid="uid://b5ople85dfdrg"]
 
-[ext_resource type="Script" uid="uid://dhkeqghi2w2oa" path="res://scenes/raycast_wheel.gd" id="1_27c0p"]
-[ext_resource type="Script" uid="uid://dbeyojcw6pmcx" path="res://scenes/rascast_car.gd" id="1_s8sy0"]
+[ext_resource type="PackedScene" uid="uid://dt1pgo8jfs24j" path="res://scenes/car.tscn" id="1_27c0p"]
 
 [sub_resource type="Environment" id="Environment_yo124"]
 
@@ -11,53 +10,6 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s8sy0"]
 size = Vector3(200, 1, 200)
-
-[sub_resource type="Curve" id="Curve_s8sy0"]
-_data = [Vector2(0.01421801, 0.6741574), 0.0, 0.0, 0, 0, Vector2(0.37914693, 0.9550562), 0.0, 0.0, 0, 0, Vector2(0.6208531, 0.8764045), 0.0, 0.0, 0, 0, Vector2(0.97630334, 0.26966298), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yo124"]
-albedo_color = Color(0.58720315, 0.4390276, 0.9480024, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_27c0p"]
-material = SubResource("StandardMaterial3D_yo124")
-size = Vector3(2, 0.4, 4)
-
-[sub_resource type="BoxMesh" id="BoxMesh_s8sy0"]
-size = Vector3(0.7, 0.4, 1.8)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_fi1wu"]
-size = Vector3(1.8568435, 0.2730599, 3.9788055)
-
-[sub_resource type="Curve" id="Curve_fi1wu"]
-_data = [Vector2(0, 0.9325843), 0.0, 0.0, 0, 0, Vector2(0.39130437, 0.49438208), 0.0, 0.0, 0, 0, Vector2(1, 0.17977536), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_yo124"]
-top_radius = 0.4
-bottom_radius = 0.4
-height = 0.15
-
-[sub_resource type="Gradient" id="Gradient_s8sy0"]
-offsets = PackedFloat32Array(0.24812031, 0.60150373, 0.99248123, 1)
-colors = PackedColorArray(0.87499994, 0.87499994, 0.87499994, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0.083333336, 0.083333336, 0.083333336, 1)
-metadata/_snap_enabled = true
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_fi1wu"]
-gradient = SubResource("Gradient_s8sy0")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_s8sy0"]
-gravity = Vector3(0, 0, 0)
-color = Color(0.3356332, 0.40204254, 0.8237351, 1)
-color_ramp = SubResource("GradientTexture1D_fi1wu")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fi1wu"]
-transparency = 1
-vertex_color_use_as_albedo = true
-
-[sub_resource type="QuadMesh" id="QuadMesh_g86do"]
-material = SubResource("StandardMaterial3D_fi1wu")
-size = Vector2(0.4, 1)
 
 [node name="racetrack" type="Node3D"]
 
@@ -80,104 +32,6 @@ physics_material_override = SubResource("PhysicsMaterial_s8sy0")
 transform = Transform3D(0.99999976, 0, 0, 0, 0.9999998, 0, 0, -1.3969839e-09, 0.9999999, 0, 0, 0)
 shape = SubResource("BoxShape3D_s8sy0")
 
-[node name="Car" type="RigidBody3D" parent="." node_paths=PackedStringArray("wheels", "skid_marks")]
+[node name="Car" parent="." instance=ExtResource("1_27c0p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 591.0943, 3.4483318, 0)
-mass = 70.0
-script = ExtResource("1_s8sy0")
-wheels = [NodePath("WheelFL"), NodePath("WheelRL"), NodePath("WheelFR"), NodePath("WheelRR")]
-accel_curve = SubResource("Curve_s8sy0")
-skid_marks = [NodePath("SkidMaks/GPUParticles3D"), NodePath("SkidMaks/GPUParticles3D2"), NodePath("SkidMaks/GPUParticles3D3"), NodePath("SkidMaks/GPUParticles3D4")]
-
-[node name="MeshCar" type="MeshInstance3D" parent="Car"]
-mesh = SubResource("BoxMesh_27c0p")
-
-[node name="fuelle" type="MeshInstance3D" parent="Car/MeshCar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4737649, 1.1570587)
-mesh = SubResource("BoxMesh_s8sy0")
-
-[node name="CollisionCar" type="CollisionShape3D" parent="Car"]
-shape = SubResource("BoxShape3D_fi1wu")
-
-[node name="Camera3D" type="Camera3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 0.96923953, 0.24611947, 0, -0.24611947, 0.96923953, 0, 3, 8)
-
-[node name="WheelFL" type="RayCast3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06, 0, -1.4)
-enabled = false
-script = ExtResource("1_27c0p")
-spring_strength = 2000.0
-spring_damping = 300.0
-over_extend = 0.2
-grip_curve = SubResource("Curve_fi1wu")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Car/WheelFL"]
-transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 1, -0.009191394, -0.100000024, 0)
-mesh = SubResource("CylinderMesh_yo124")
-
-[node name="WheelRL" type="RayCast3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07, 0, 1.5)
-enabled = false
-script = ExtResource("1_27c0p")
-spring_strength = 2000.0
-spring_damping = 300.0
-rest_dist = 0.56
-over_extend = 0.2
-is_motor = true
-grip_curve = SubResource("Curve_fi1wu")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Car/WheelRL"]
-transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 1, -0.009191394, -0.100000024, 0)
-mesh = SubResource("CylinderMesh_yo124")
-
-[node name="WheelFR" type="RayCast3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.06, 0, -1.4)
-enabled = false
-script = ExtResource("1_27c0p")
-spring_strength = 2000.0
-spring_damping = 300.0
-over_extend = 0.2
-grip_curve = SubResource("Curve_fi1wu")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Car/WheelFR"]
-transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 1, -0.009191394, -0.1042645, 0)
-mesh = SubResource("CylinderMesh_yo124")
-
-[node name="WheelRR" type="RayCast3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.07, 0, 1.5)
-enabled = false
-script = ExtResource("1_27c0p")
-spring_strength = 2000.0
-spring_damping = 300.0
-over_extend = 0.2
-is_motor = true
-grip_curve = SubResource("Curve_fi1wu")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Car/WheelRR"]
-transform = Transform3D(-4.3711385e-08, -0.99999994, 0, 0.99999994, -4.3711385e-08, 0, 0, 0, 1, -0.009191394, -0.100000024, 0)
-mesh = SubResource("CylinderMesh_yo124")
-
-[node name="SkidMaks" type="Node3D" parent="Car"]
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Car/SkidMaks"]
-transform = Transform3D(1, 0, 0, 0, 0.03619019, 0.99934494, 0, -0.99934494, 0.03619019, -1.0702695, -0.29950702, 1.951827)
-emitting = false
-process_material = SubResource("ParticleProcessMaterial_s8sy0")
-draw_pass_1 = SubResource("QuadMesh_g86do")
-
-[node name="GPUParticles3D2" type="GPUParticles3D" parent="Car/SkidMaks"]
-transform = Transform3D(1, 0, 0, 0, 0.03619019, 0.99934494, 0, -0.99934494, 0.03619019, 1.1198575, -0.17214274, 2.0350018)
-emitting = false
-process_material = SubResource("ParticleProcessMaterial_s8sy0")
-draw_pass_1 = SubResource("QuadMesh_g86do")
-
-[node name="GPUParticles3D3" type="GPUParticles3D" parent="Car/SkidMaks"]
-transform = Transform3D(1, 0, 0, 0, 0.03619019, 0.99934494, 0, -0.99934494, 0.03619019, 1.0768523, -0.3568493, -0.8972442)
-emitting = false
-process_material = SubResource("ParticleProcessMaterial_s8sy0")
-draw_pass_1 = SubResource("QuadMesh_g86do")
-
-[node name="GPUParticles3D4" type="GPUParticles3D" parent="Car/SkidMaks"]
-transform = Transform3D(1, 0, 0, 0, 0.03619019, 0.99934494, 0, -0.99934494, 0.03619019, -1.0952772, -0.3706261, -1.0674756)
-emitting = false
-process_material = SubResource("ParticleProcessMaterial_s8sy0")
-draw_pass_1 = SubResource("QuadMesh_g86do")
+acceleration = 1000.0

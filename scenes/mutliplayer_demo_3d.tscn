@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://dt3a2tbk401ad"]
+
+[ext_resource type="PackedScene" uid="uid://dt1pgo8jfs24j" path="res://scenes/car.tscn" id="1_n664u"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n664u"]
+
+[sub_resource type="Sky" id="Sky_67u8d"]
+sky_material = SubResource("ProceduralSkyMaterial_n664u")
+
+[sub_resource type="Environment" id="Environment_8dsiy"]
+background_mode = 2
+sky = SubResource("Sky_67u8d")
+
+[sub_resource type="GDScript" id="GDScript_r717v"]
+script/source = "extends Node3D
+
+@export var car_scene: PackedScene # Assign your car.tscn here in the editor
+
+var spawned_cars = {} # Map player_slot to car node
+
+func _ready():
+	PlayerManager.player_joined.connect(_on_player_joined)
+	PlayerManager.player_left.connect(_on_player_left)
+
+func _process(delta: float) -> void:
+	PlayerManager.handle_join_input()
+	PlayerManager.handle_leave_input()
+
+func _on_player_joined(player_slot: int, device_id: int):
+	print(\"Car Spawner: Player \", player_slot, \" joined with device \", device_id)
+	var new_car = car_scene.instantiate() as RigidBody3D
+	add_child(new_car)
+
+	# Initialize the car's input through its init function
+	if new_car.has_method(\"init\"):
+		new_car.init(player_slot, device_id)
+		new_car.position = Vector3(randf_range(-10, 10), 0.5, randf_range(-10, 10)) # Example spawn
+		spawned_cars[player_slot] = new_car
+	else:
+		printerr(\"Spawned car does not have an 'init' method!\")
+
+func _on_player_left(player_slot: int):
+	print(\"Car Spawner: Player \", player_slot, \" left.\")
+	if spawned_cars.has(player_slot):
+		spawned_cars[player_slot].queue_free()
+		spawned_cars.erase(player_slot)
+"
+
+[node name="MutliplayerDemo3D" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+use_collision = true
+size = Vector3(25, 1, 25)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 25, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8dsiy")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 8, 0)
+shadow_enabled = true
+
+[node name="CarSpawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0)
+script = SubResource("GDScript_r717v")
+car_scene = ExtResource("1_n664u")
