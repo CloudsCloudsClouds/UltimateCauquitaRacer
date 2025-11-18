@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm32r0ly0yold"]
+
+[ext_resource type="AudioStream" uid="uid://dx5t5sa2in04w" path="res://scenes/audioCar/car_crash_sound.mp3" id="1_148kl"]
+[ext_resource type="Script" uid="uid://3qu2a8ld47uq" path="res://scenes/audioCar/audio_car.gd" id="1_gli4c"]
+
+[node name="AudioCar" type="Node3D"]
+script = ExtResource("1_gli4c")
+
+[node name="CrashPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("1_148kl")
+max_distance = 50.0
