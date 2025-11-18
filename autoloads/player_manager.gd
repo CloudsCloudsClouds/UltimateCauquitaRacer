@@ -37,14 +37,11 @@ func join(device: int) -> void:
 		# other data...
 	}
 	device_to_slot_map[device] = player_slot
-	
-	# 4. Tell the plugin to map this.
-	# THIS IS THE MISSING LINK TO YOUR PLUGIN.
-	# The name will be different based on your plugin.
-	MultiplayerInput.assign_device_to_slot(device, player_slot)
-	
+
+
 	# 5. Emit signal
 	player_joined.emit(player_slot, device)
+	print_debug("Player joined")
 
 func leave(player_slot: int) -> void:
 	if !player_data.has(player_slot):
@@ -57,9 +54,7 @@ func leave(player_slot: int) -> void:
 	player_data.erase(player_slot)
 	if device_to_slot_map.has(device): # Safety check
 		device_to_slot_map.erase(device)
-	
-	# 3. Tell the plugin to unmap this.
-	MultiplayerInput.unassign_slot(player_slot)
+
 
 	# 4. Emit signal
 	player_left.emit(player_slot)
@@ -78,7 +73,7 @@ func handle_leave_input():
 	for player_slot in get_player_indexes():
 		var device = get_player_device(player_slot)
 		# Assumes "ui_cancel" is mapped to the player's slot (p1_ui_cancel, etc.)
-		if MultiplayerInput.is_action_just_pressed(device, "ui_cancel"):
+		if MultiplayerInput.is_action_just_pressed(device, "leave"):
 			leave(player_slot)
 
 # --- Getters / Setters ---
@@ -100,7 +95,7 @@ func get_slot_from_device(device: int) -> int:
 func get_unjoined_devices():
 	var devices = Input.get_connected_joypads()
 	devices.append(-1) # Add keyboard
-	
+
 	# Now *much* faster.
 	return devices.filter(func(device): return !is_device_joined(device))
 

@@ -22,6 +22,7 @@ var input: DeviceInput
 
 signal leave
 
+
 func init(player_num: int, device: int):
 	player = player_num
 	input = DeviceInput.new(device)
@@ -31,57 +32,31 @@ func _ready() -> void:
 	center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
 	center_of_mass = Vector3(0.0, -0.5, 0.0)
 
-"""
-Esto solia funcionar ok, pero ahora que como que somos multijugador, no podemos confiar en que
-el nombre del input se maneje aqui.
-
-Esto se mueve a una funcion dedicada.
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("handbreak"):
-		hand_break = true
-		is_slipping = true
-	elif event.is_action_released("handbreak"):
-		hand_break = false
-
-	if event.is_action_pressed("accelerate"):
-		motor_input = 1
-	elif event.is_action_released("accelerate"):
-		# solo soltamos si no estamos frenando
-		if not Input.is_action_pressed("decelerate"):
-			motor_input = 0
-
-	if event.is_action_pressed("decelerate"):
-		motor_input = -1
-	elif event.is_action_released("decelerate"):
-		if not Input.is_action_pressed("accelerate"):
-			motor_input = 0
-"""
 
 func get_input() -> void:
 	if input.is_action_pressed("handbreak"):
 		hand_break = true
 		is_slipping = true
-	elif input.is_action_released("handbreak"):
+	elif input.is_action_just_released("handbreak"):
 		hand_break = false
 
 	if input.is_action_pressed("accelerate"):
 		motor_input = 1
-	elif input.is_action_released("accelerate"):
+	elif input.is_action_just_released("accelerate"):
 		# solo soltamos si no estamos frenando
 		if not Input.is_action_pressed("decelerate"):
 			motor_input = 0
 
 	if input.is_action_pressed("decelerate"):
 		motor_input = -1
-	elif input.is_action_released("decelerate"):
+	elif input.is_action_just_released("decelerate"):
 		if not Input.is_action_pressed("accelerate"):
 			motor_input = 0
 
 
 
 func _basic_steering_rotation(delta: float) -> void:
-	var turn_input := Input.get_axis("turn_right", "turn_left") * tire_turn_speed
+	var turn_input := input.get_axis("turn_right", "turn_left") * tire_turn_speed
 
 	if turn_input != 0.0:
 		$WheelFL.rotation.y = clampf(
@@ -100,6 +75,7 @@ func _basic_steering_rotation(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	get_input()
 	_basic_steering_rotation(delta)
 
 	var id := 0

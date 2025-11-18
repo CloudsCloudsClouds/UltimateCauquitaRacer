@@ -68,9 +68,6 @@ mesh = SubResource("BoxMesh_s8sy0")
 [node name="CollisionCar" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_fi1wu")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.96923953, 0.24611947, 0, -0.24611947, 0.96923953, 0, 3, 8)
-
 [node name="WheelFL" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06, 0, -1.4)
 enabled = false
