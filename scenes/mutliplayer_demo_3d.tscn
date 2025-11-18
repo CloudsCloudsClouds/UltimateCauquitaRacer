@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dt3a2tbk401ad"]
+[gd_scene load_steps=10 format=3 uid="uid://dt3a2tbk401ad"]
 
 [ext_resource type="Texture2D" uid="uid://crkp6p04522v6" path="res://assets/sprites/clover/tileable-grass_clover_TT7010116-dark2.png" id="1_67u8d"]
 [ext_resource type="PackedScene" uid="uid://dt1pgo8jfs24j" path="res://scenes/car.tscn" id="1_n664u"]
 [ext_resource type="Script" uid="uid://d23rp1m37a4he" path="res://scripts/camera_follower.gd" id="3_8dsiy"]
+[ext_resource type="PackedScene" uid="uid://ydt14k1ho0yf" path="res://scenes/speed_powerup.tscn" id="4_oum6t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8dsiy"]
 albedo_texture = ExtResource("1_67u8d")
@@ -80,5 +81,9 @@ car_scene = ExtResource("1_n664u")
 
 [node name="CameraFollower" type="Camera3D" parent="CarSpawner"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3, 0)
+fov = 90.0
 script = ExtResource("3_8dsiy")
 metadata/_custom_type_script = "uid://d23rp1m37a4he"
+
+[node name="SpeedPowerup" parent="." instance=ExtResource("4_oum6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.081356, -0.24064355, -0.3776493)

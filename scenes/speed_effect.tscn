@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbh8ocq3mw6mc"]
+
+[ext_resource type="Script" uid="uid://bjgfcbr0bdj6o" path="res://scripts/powerups/SpeedBoostEffect.gd" id="1_yjr73"]
+
+[node name="SpeedEffect" type="Node3D"]
+script = ExtResource("1_yjr73")
