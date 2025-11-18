@@ -9,7 +9,7 @@
 #
 # Última actualización: Implementación de dirección analógica para una experiencia de
 # conducción más suave y sensible.
-
+class_name PlayerCar
 extends RigidBody3D
 
 ## Array de objetos RaycastWheel que representan las ruedas del coche.
@@ -31,7 +31,7 @@ extends RigidBody3D
 var motor_input := 0
 
 ## Velocidad a la que giran las ruedas delanteras al cambiar la dirección.
-@export var tire_turn_speed := 2.0
+@export var tire_turn_speed := 5.0
 
 ## El ángulo máximo en grados que las ruedas delanteras pueden girar hacia la izquierda o la derecha.
 @export var tire_max_turn_degress := 25
