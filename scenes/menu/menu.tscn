@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://q3grwte1ns13"]
+
+[ext_resource type="Script" uid="uid://c3y745t850i45" path="res://scenes/menu/menu.gd" id="1_mcvr8"]
+[ext_resource type="Texture2D" uid="uid://hxh0dxad2mjm" path="res://scenes/menu/imagenes/illimani_art.png" id="2_e0arn"]
+[ext_resource type="Texture2D" uid="uid://c2rt4yqcpdro5" path="res://scenes/menu/imagenes/CAUQUITA-RACER.png" id="3_037ec"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0arn"]
+bg_color = Color(0.5530396, 0.38897198, 0.9549803, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_037ec"]
+bg_color = Color(0.85490197, 0.2901961, 0.41568628, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y1o0p"]
+bg_color = Color(0.10817733, 0.53967404, 0.86407214, 1)
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mcvr8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3593631, 0.36748037, 0.41627994, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_e0arn")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -239.0
+offset_right = 239.0
+offset_bottom = 134.0
+grow_horizontal = 2
+texture = ExtResource("3_037ec")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.5
+offset_top = -125.5
+offset_right = 182.5
+offset_bottom = 125.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 22
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_e0arn")
+text = "JUGAR"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_037ec")
+text = "OPCIONES
+"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_y1o0p")
+text = "SALIR
+"
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
