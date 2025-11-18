@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://rrbeolyw5plw"]
+
+[ext_resource type="Script" uid="uid://bl2aov1bah7c0" path="res://scripts/powerups/WeightBoostEffect.gd" id="1_6bbkw"]
+
+[node name="WeightEffect" type="Node3D"]
+script = ExtResource("1_6bbkw")
