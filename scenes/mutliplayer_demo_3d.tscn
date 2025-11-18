@@ -1,6 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dt3a2tbk401ad"]
+[gd_scene load_steps=8 format=3 uid="uid://dt3a2tbk401ad"]
 
+[ext_resource type="Texture2D" uid="uid://crkp6p04522v6" path="res://assets/sprites/clover/tileable-grass_clover_TT7010116-dark2.png" id="1_67u8d"]
 [ext_resource type="PackedScene" uid="uid://dt1pgo8jfs24j" path="res://scenes/car.tscn" id="1_n664u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8dsiy"]
+albedo_texture = ExtResource("1_67u8d")
+uv1_triplanar = true
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n664u"]
 
@@ -53,6 +58,7 @@ func _on_player_left(player_slot: int):
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+material_override = SubResource("StandardMaterial3D_8dsiy")
 use_collision = true
 size = Vector3(30, 1, 30)
 
