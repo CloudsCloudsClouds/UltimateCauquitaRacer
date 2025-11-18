@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dt1pgo8jfs24j"]
+[gd_scene load_steps=16 format=3 uid="uid://dt1pgo8jfs24j"]
 
 [ext_resource type="Script" uid="uid://dbeyojcw6pmcx" path="res://scenes/rascast_car.gd" id="1_qt2eu"]
 [ext_resource type="Script" uid="uid://dhkeqghi2w2oa" path="res://scenes/raycast_wheel.gd" id="2_50v30"]
@@ -49,6 +49,15 @@ vertex_color_use_as_albedo = true
 [sub_resource type="QuadMesh" id="QuadMesh_g86do"]
 material = SubResource("StandardMaterial3D_fi1wu")
 size = Vector2(0.4, 1)
+
+[sub_resource type="GDScript" id="GDScript_qt2eu"]
+script/source = "extends Label3D
+
+@onready var parent := get_parent() as PlayerCar
+
+func _physics_process(delta: float) -> void:
+	text = str(parent.player)
+"
 
 [node name="Car" type="RigidBody3D" node_paths=PackedStringArray("wheels", "skid_marks")]
 mass = 70.0
@@ -152,3 +161,10 @@ emitting = false
 amount = 32
 process_material = SubResource("ParticleProcessMaterial_s8sy0")
 draw_pass_1 = SubResource("QuadMesh_g86do")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2504983, 0)
+pixel_size = 0.001
+billboard = 1
+fixed_size = true
+script = SubResource("GDScript_qt2eu")

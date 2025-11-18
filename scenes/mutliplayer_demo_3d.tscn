@@ -38,8 +38,8 @@ func _process(delta: float) -> void:
 func _on_player_joined(player_slot: int, device_id: int):
 	print(\"Car Spawner: Player \", player_slot, \" joined with device \", device_id)
 	var new_car = car_scene.instantiate() as PlayerCar
-	new_car.acceleration = 1500
-	new_car.max_speed = 40
+	new_car.acceleration = 1000
+	new_car.max_speed = 30
 	new_car.tire_max_turn_degress = 35
 	add_child(new_car)
 
