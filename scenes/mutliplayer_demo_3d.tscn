@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dt3a2tbk401ad"]
+[gd_scene load_steps=11 format=3 uid="uid://dt3a2tbk401ad"]
 
+[ext_resource type="PackedScene" uid="uid://cny5rkxpvky2g" path="res://scenes/weight_powerup.tscn" id="1_5fafn"]
 [ext_resource type="Texture2D" uid="uid://crkp6p04522v6" path="res://assets/sprites/clover/tileable-grass_clover_TT7010116-dark2.png" id="1_67u8d"]
 [ext_resource type="PackedScene" uid="uid://dt1pgo8jfs24j" path="res://scenes/car.tscn" id="1_n664u"]
 [ext_resource type="Script" uid="uid://d23rp1m37a4he" path="res://scripts/camera_follower.gd" id="3_8dsiy"]
@@ -60,6 +61,9 @@ func _on_player_left(player_slot: int):
 "
 
 [node name="MutliplayerDemo3D" type="Node3D"]
+
+[node name="WeightPowerup" parent="." instance=ExtResource("1_5fafn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 9)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)

@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://q3grwte1ns13"]
+[gd_scene load_steps=9 format=3 uid="uid://q3grwte1ns13"]
 
 [ext_resource type="Script" uid="uid://c3y745t850i45" path="res://scenes/menu/menu.gd" id="1_mcvr8"]
 [ext_resource type="Texture2D" uid="uid://hxh0dxad2mjm" path="res://scenes/menu/imagenes/illimani_art.png" id="2_e0arn"]
+[ext_resource type="PackedScene" uid="uid://dt3a2tbk401ad" path="res://scenes/mutliplayer_demo_3d.tscn" id="2_y1o0p"]
 [ext_resource type="Texture2D" uid="uid://c2rt4yqcpdro5" path="res://scenes/menu/imagenes/CAUQUITA-RACER.png" id="3_037ec"]
+[ext_resource type="PackedScene" uid="uid://csw7ls6lu0xc8" path="res://scenes/menu/Options.tscn" id="3_r8yej"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0arn"]
 bg_color = Color(0.5530396, 0.38897198, 0.9549803, 1)
@@ -21,6 +23,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mcvr8")
+play_scene = ExtResource("2_y1o0p")
+config_scene = ExtResource("3_r8yej")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

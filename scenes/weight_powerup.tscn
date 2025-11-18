@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://cny5rkxpvky2g"]
+
+[ext_resource type="Script" uid="uid://dhcdlogenh1q5" path="res://scripts/powerups/PowerUpArea3D.gd" id="1_u7mpn"]
+[ext_resource type="PackedScene" uid="uid://rrbeolyw5plw" path="res://scenes/weight_effect.tscn" id="2_ncil4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vow8m"]
+radius = 1.0
+
+[sub_resource type="Curve" id="Curve_u7mpn"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.125, 1), 0.0, 0.0, 0, 0, Vector2(0.73936635, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_4bjqj"]
+curve = SubResource("Curve_u7mpn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ncil4"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 3, 0)
+scale_curve = SubResource("CurveTexture_4bjqj")
+hue_variation_min = 0.35999995
+hue_variation_max = 0.99999994
+turbulence_enabled = true
+turbulence_noise_scale = 1.0
+turbulence_initial_displacement_min = -0.09999851
+turbulence_initial_displacement_max = 0.10000149
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xf5iy"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ecd1v"]
+material = SubResource("StandardMaterial3D_xf5iy")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="Curve" id="Curve_w8hpv"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.296565, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_epgjl"]
+curve = SubResource("Curve_w8hpv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rcpqd"]
+emission_shape_scale = Vector3(0.1, 0.1, 1)
+emission_shape = 2
+emission_sphere_radius = 1.0
+angle_min = 15.0000105
+angle_max = 100.000015
+angular_velocity_min = 14.999984
+angular_velocity_max = 14.999984
+orbit_velocity_min = -1.2709999
+orbit_velocity_max = 1.3710002
+radial_velocity_min = 0.99997765
+radial_velocity_max = 0.99997765
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = 14.249997
+tangential_accel_min = -2.2351742e-06
+tangential_accel_max = 4.9999976
+damping_min = 5.0
+damping_max = 5.0
+scale_curve = SubResource("CurveTexture_epgjl")
+turbulence_enabled = true
+turbulence_noise_strength = 6.0
+
+[sub_resource type="TorusMesh" id="TorusMesh_ssdao"]
+inner_radius = 0.1
+outer_radius = 0.2
+rings = 3
+ring_segments = 12
+
+[node name="WeightPowerup" type="Area3D"]
+script = ExtResource("1_u7mpn")
+effect_scene = ExtResource("2_ncil4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_vow8m")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 64
+process_material = SubResource("ParticleProcessMaterial_ncil4")
+draw_pass_1 = SubResource("SphereMesh_ecd1v")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_rcpqd")
+draw_pass_1 = SubResource("TorusMesh_ssdao")

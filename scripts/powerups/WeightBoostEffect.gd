@@ -16,7 +16,7 @@ func _ready():
 		# Calling reset_physics_transforms() can sometimes help the physics engine
 		# re-evaluate the body's properties after a mass change, though it might not
 		# always be strictly necessary for mass. It's good practice for RigidBody3D changes.
-		player_car.reset_physics_transforms()
+		player_car.reset_physics_interpolation()
 
 		# Create and start a timer to revert the effect
 		var timer = Timer.new()
@@ -34,6 +34,6 @@ func _on_timer_timeout():
 	if player_car and is_instance_valid(player_car):
 		print("WeightBoostEffect: Reverting weight boost.")
 		player_car.mass = original_mass
-		player_car.reset_physics_transforms() # Revert physics transform changes too
+		player_car.reset_physics_interpolation() # Revert physics transform changes too
 	# Remove the effect node from the scene
 	queue_free()
