@@ -57,7 +57,7 @@ var input: DeviceInput
 signal leave
 
 ## Seña emitida cuando el jugador asociado a este coche exclama adios mundo cruel
-signal destroy
+signal destroy(car: PlayerCar)
 
 
 ## Inicializa el coche con el número de jugador y el ID del dispositivo de entrada.
@@ -278,10 +278,11 @@ func _do_single_wheel_suspension(ray: RaycastWheel) -> void:
 	var force_pos_offset := ray.wheel.global_position - global_position # Posición para aplicar la fuerza.
 	apply_force(force_vector, force_pos_offset) # Aplica la fuerza de suspensión.
 
-
+# Destroy!
+# You can't scape.
 func destroy_car() -> void:
 	ParticleManager.explode(position)
 	freeze = true
-	emit_signal("destroy")
+	emit_signal("destroy", self)
 	await get_tree().create_timer(3).timeout
 	queue_free()

@@ -40,3 +40,8 @@ func _on_player_left(player_slot: int):
 		camera_follower.remove_objective(spawned_cars[player_slot])
 		spawned_cars[player_slot].destroy_car()
 		spawned_cars.erase(player_slot)
+
+func _on_car_destroyed(mycar: PlayerCar):
+	if spawned_cars.has(mycar):
+		spawned_cars.erase(car)
+		camera_follower.remove_objective(mycar)
