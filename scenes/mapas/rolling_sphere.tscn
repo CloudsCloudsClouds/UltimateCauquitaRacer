@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://drqlbi6rwlfpx"]
+
+[ext_resource type="Script" uid="uid://dg4l2fxmtdq0b" path="res://scenes/mapas/rolling_sphere.gd" id="1_moyeh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bdacg"]
+albedo_color = Color(0.6392157, 0.05882353, 0.043137256, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_moyeh"]
+material = SubResource("StandardMaterial3D_bdacg")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_xkygx"]
+radius = 1.019628
+
+[node name="RollingSphere" type="AnimatableBody3D"]
+script = ExtResource("1_moyeh")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("SphereMesh_moyeh")
+
+[node name="collision" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_xkygx")
