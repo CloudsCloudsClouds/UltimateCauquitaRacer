@@ -12,9 +12,9 @@ func _ready() -> void:
 	parent.contact_monitor = true
 	parent.max_contacts_reported = 4
 	parent.connect("body_entered", _on_car_body_entered)
-	parent.connect("suicide", _on_car_destroy)
+	parent.connect("destroy", _on_car_destroy)
 
-func _on_car_destroy() -> void:
+func _on_car_destroy(car: PlayerCar) -> void:
 	# Reproducir sonido en la posicion de la explosion
 	# Osea que se murio
 	print_debug("Muerte! Sonando explosion")
@@ -23,6 +23,7 @@ func _on_car_destroy() -> void:
 	audio_stream.stream = audio
 	
 	audio_stream.pitch_scale += randf_range(-0.1, 0.1)
+	audio_stream.position = car.global_position
 	add_child(audio_stream)
 	audio_stream.play()
 

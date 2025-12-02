@@ -281,8 +281,9 @@ func _do_single_wheel_suspension(ray: RaycastWheel) -> void:
 # Destroy!
 # You can't scape.
 func destroy_car() -> void:
-	ParticleManager.explode(position)
+	ParticleManager.explode(global_position)
 	freeze = true
 	emit_signal("destroy", self)
-	await get_tree().create_timer(3).timeout
+	visible = false
+	await get_tree().create_timer(2).timeout
 	queue_free()

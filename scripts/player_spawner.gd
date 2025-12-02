@@ -5,8 +5,8 @@ extends Node3D
 @export var l_length: float = 10.0
 @export var l_width: float = 10.0
 
-var spawned_cars: Array[PlayerCar]
-var camera_follower: CameraFollower
+var spawned_cars = {}
+@onready var camera_follower: CameraFollower = $CameraFollower
 
 func _ready():
 	PlayerManager.player_joined.connect(_on_player_joined)
