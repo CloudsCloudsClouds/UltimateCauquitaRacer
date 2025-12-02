@@ -1,0 +1,145 @@
+[gd_scene load_steps=12 format=3 uid="uid://7bnkscbykkkl"]
+
+[ext_resource type="Script" uid="uid://bi8ilff817lag" path="res://scenes/mapas/directional_light_3d.gd" id="1_5f1d1"]
+[ext_resource type="Texture2D" uid="uid://hlgupwthr6x3" path="res://assets/sprites/grass/tilable-IMG_0044_nm.png" id="2_wywkp"]
+[ext_resource type="PackedScene" path="res://scenes/car.tscn" id="3_cre3s"]
+[ext_resource type="Script" path="res://scripts/camera_follower.gd" id="4_syeqe"]
+[ext_resource type="PackedScene" uid="uid://5demtyrwtxd3" path="res://scenes/mapas/moving_plataform.tscn" id="5_wywkp"]
+[ext_resource type="PackedScene" uid="uid://b7v6eoiicf4ow" path="res://scenes/mapas/metal_obstacle.tscn" id="6_cre3s"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uiwv3"]
+sky_horizon_color = Color(0.3301123, 0.69798905, 0.90226805, 1)
+
+[sub_resource type="Sky" id="Sky_e6nqe"]
+sky_material = SubResource("ProceduralSkyMaterial_uiwv3")
+
+[sub_resource type="Environment" id="Environment_68jmy"]
+background_mode = 2
+sky = SubResource("Sky_e6nqe")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1gls"]
+albedo_texture = ExtResource("2_wywkp")
+
+[sub_resource type="GDScript" id="GDScript_bd15y"]
+script/source = "extends Node3D
+
+@export var car_view: PackedScene # Assign your car.tscn here in the editor
+
+var spawned_cars = {} # Map player_slot to car node
+@onready var camera_follower: CameraFollower = $CameraFollower
+
+func _ready():
+	PlayerManager.player_joined.connect(_on_player_joined)
+	PlayerManager.player_left.connect(_on_player_left)
+
+func _process(delta: float) -> void:
+	PlayerManager.handle_join_input()
+	PlayerManager.handle_leave_input()
+
+func _on_player_joined(player_slot: int, device_id: int):
+	print(\"Car Spawner: Player \", player_slot, \" joined with device \", device_id)
+	var new_car = car_view.instantiate() as PlayerCar
+	new_car.acceleration = 1500
+	new_car.max_speed = 40
+	new_car.tire_max_turn_degress = 35
+	add_child(new_car)
+
+	# Initialize the car's input through its init function
+	if new_car.has_method(\"init\"):
+		new_car.init(player_slot, device_id)
+		new_car.position = Vector3(randf_range(-10, 10), 0.5, randf_range(-10, 10)) # Example spawn
+		spawned_cars[player_slot] = new_car
+		camera_follower.add_objective(new_car)
+	else:
+		printerr(\"Spawned car does not have an 'init' method!\")
+
+func _on_player_left(player_slot: int):
+	print(\"Car Spawner: Player \", player_slot, \" left.\")
+	if spawned_cars.has(player_slot):
+		camera_follower.remove_objective(spawned_cars[player_slot])
+		spawned_cars[player_slot].queue_free()
+		spawned_cars.erase(player_slot)
+"
+
+[node name="mapa2" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_68jmy")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9996771, -0.015637554, 0.020027399, -0.022341287, -0.91639745, 0.3996455, 0.012103579, -0.39996395, -0.916451, -1.1395097, 28.380465, -0.2736163)
+light_color = Color(1, 0.564266, 0.71218973, 1)
+light_energy = 2.0
+script = ExtResource("1_5f1d1")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009757996, -0.044612885, 0.05149412)
+material_override = SubResource("StandardMaterial3D_o1gls")
+use_collision = true
+size = Vector3(40, 1, 40)
+
+[node name="CarSpawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0)
+script = SubResource("GDScript_bd15y")
+car_view = ExtResource("3_cre3s")
+
+[node name="CameraFollower" type="Camera3D" parent="CarSpawner"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3, 0)
+fov = 90.0
+script = ExtResource("4_syeqe")
+
+[node name="MovingPlataform" parent="." instance=ExtResource("5_wywkp")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13.872118, 0.973166, -13.839784)
+mode = 2
+rotate_speed_deg = 300.0
+
+[node name="MovingPlataform2" parent="." instance=ExtResource("5_wywkp")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12.060551, 0.973166, -13.839784)
+mode = 2
+rotate_speed_deg = 300.0
+
+[node name="MovingPlataform3" parent="." instance=ExtResource("5_wywkp")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12.060551, 0.973166, 13.334033)
+mode = 2
+rotate_speed_deg = 300.0
+
+[node name="MovingPlataform4" parent="." instance=ExtResource("5_wywkp")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13.194712, 0.973166, 13.334033)
+mode = 2
+rotate_speed_deg = 300.0
+
+[node name="metal_obstacle" parent="." instance=ExtResource("6_cre3s")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -15.9114485, 1.1687707, 6.267326)
+
+[node name="metal_obstacle2" parent="." instance=ExtResource("6_cre3s")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -6.20391, 1.1687707, 15.305578)
+
+[node name="metal_obstacle3" parent="." instance=ExtResource("6_cre3s")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 4.0112524, 1.1687707, 16.513506)
+
+[node name="metal_obstacle4" parent="." instance=ExtResource("6_cre3s")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 14.215999, 1.1687707, 6.88223)
+
+[node name="metal_obstacle5" parent="." instance=ExtResource("6_cre3s")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 14.215999, 1.1687707, -8.358714)
+
+[node name="metal_obstacle6" parent="." instance=ExtResource("6_cre3s")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 4.8353977, 1.1687707, -16.761684)
+
+[node name="metal_obstacle7" parent="." instance=ExtResource("6_cre3s")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -16.14507, 1.1687707, -9.957115)
+
+[node name="metal_obstacle8" parent="." instance=ExtResource("6_cre3s")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -7.391196, 1.1687707, -16.547241)
+
+[node name="metal_obstacle9" parent="." instance=ExtResource("6_cre3s")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.90547514, 1.1687707, -16.547241)
+
+[node name="metal_obstacle10" parent="." instance=ExtResource("6_cre3s")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 13.495842, 1.5781955, -1.3506927)
+
+[node name="metal_obstacle12" parent="." instance=ExtResource("6_cre3s")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -17.122534, 1.5781955, -1.3506927)
+
+[node name="metal_obstacle11" parent="." instance=ExtResource("6_cre3s")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -1.2395282, 1.5781955, 15.824469)
