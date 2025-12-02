@@ -1,18 +1,30 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3502udra48hm"]
+[gd_scene load_steps=14 format=3 uid="uid://b3502udra48hm"]
 
 [ext_resource type="Texture2D" uid="uid://f6578c6mo60j" path="res://assets/sprites/grass/tilable-IMG_0044.png" id="1_r8nin"]
+[ext_resource type="Script" uid="uid://bi8ilff817lag" path="res://scenes/mapas/directional_light_3d.gd" id="2_lw1ml"]
 [ext_resource type="PackedScene" path="res://scenes/car.tscn" id="2_r8nin"]
 [ext_resource type="Script" path="res://scripts/camera_follower.gd" id="2_w22il"]
 [ext_resource type="PackedScene" uid="uid://45w3u32o02ey" path="res://scenes/mapas/cone_obstacle.tscn" id="4_tnw7v"]
 [ext_resource type="PackedScene" uid="uid://b7v6eoiicf4ow" path="res://scenes/mapas/metal_obstacle.tscn" id="5_gnpnh"]
+[ext_resource type="PackedScene" uid="uid://5demtyrwtxd3" path="res://scenes/mapas/moving_plataform.tscn" id="6_2r1u8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnw7v"]
 albedo_texture = ExtResource("1_r8nin")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r8nin"]
 albedo_texture = ExtResource("1_r8nin")
+roughness = 0.8
+uv1_scale = Vector3(4, 4, 4)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lw1ml"]
+sky_horizon_color = Color(0.3301123, 0.69798905, 0.90226805, 1)
+
+[sub_resource type="Sky" id="Sky_e6nqe"]
+sky_material = SubResource("ProceduralSkyMaterial_lw1ml")
 
 [sub_resource type="Environment" id="Environment_kfvgn"]
+background_mode = 2
+sky = SubResource("Sky_e6nqe")
 
 [sub_resource type="GDScript" id="GDScript_w22il"]
 script/source = "extends Node3D
@@ -61,15 +73,17 @@ func _on_player_left(player_slot: int):
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009757996, -0.044612885, 0.05149412)
 material_override = SubResource("StandardMaterial3D_tnw7v")
 use_collision = true
-size = Vector3(50, 1, 50)
+size = Vector3(70, 1, 70)
 material = SubResource("StandardMaterial3D_r8nin")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kfvgn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.9996771, -0.015637554, 0.020027403, -0.019741947, 0.018200189, 0.99963945, -0.015996417, -0.9997121, 0.017885596, -1.1395097, 12.581999, -0.2736163)
-light_color = Color(0.8700589, 0.8669775, 0.52288246, 1)
+transform = Transform3D(0.99967706, -0.015637552, 0.0200274, -0.020863265, -0.95505834, 0.29568255, 0.014503581, -0.29600495, -0.9550762, -1.1395097, 12.581999, -0.2736163)
+light_color = Color(0.7884163, 0.84149975, 0.9813692, 1)
+light_energy = 2.0
+script = ExtResource("2_lw1ml")
 
 [node name="CarSpawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0)
@@ -159,8 +173,48 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -16.257988, 1.2, 19.63113)
 [node name="metal_obstacle" parent="." instance=ExtResource("5_gnpnh")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 1.9, 16)
 
+[node name="metal_obstacle4" parent="." instance=ExtResource("5_gnpnh")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -6.967262, 1.9, -28.051857)
+
+[node name="metal_obstacle5" parent="." instance=ExtResource("5_gnpnh")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 12.125477, 1.9, -27.7629)
+
+[node name="metal_obstacle6" parent="." instance=ExtResource("5_gnpnh")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -25.320763, 1.9, -7.575712)
+
+[node name="metal_obstacle7" parent="." instance=ExtResource("5_gnpnh")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -25.320763, 1.9, 10.664541)
+
+[node name="metal_obstacle8" parent="." instance=ExtResource("5_gnpnh")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 29.127274, 1.9, 16.629309)
+
+[node name="metal_obstacle9" parent="." instance=ExtResource("5_gnpnh")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 29.127274, 1.9, -10.997135)
+
 [node name="metal_obstacle3" parent="." instance=ExtResource("5_gnpnh")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -8.611459, 1.9, 16)
 
 [node name="metal_obstacle2" parent="." instance=ExtResource("5_gnpnh")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 9.438, 1.9, 16)
+
+[node name="MovingPlataform" parent="." instance=ExtResource("6_2r1u8")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 23.456797, 1.0550823, -21.745895)
+mode = 1
+move_amplitude = 4.0
+move_speed = 2.0
+
+[node name="MovingPlataform3" parent="." instance=ExtResource("6_2r1u8")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 18.153614, 1.0550823, 24.677666)
+mode = 2
+move_speed = 2.0
+
+[node name="MovingPlataform4" parent="." instance=ExtResource("6_2r1u8")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -23.078924, 1.0550823, -22.015875)
+mode = 2
+move_speed = 2.0
+
+[node name="MovingPlataform2" parent="." instance=ExtResource("6_2r1u8")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -20.012827, 1.0550823, 27.891602)
+mode = 1
+move_amplitude = 4.0
+move_speed = 2.0
