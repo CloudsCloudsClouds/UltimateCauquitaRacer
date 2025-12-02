@@ -19,6 +19,6 @@ func _physics_process(delta: float) -> void:
 
 func spawn_powerup():
 	var powerup = powerups.pick_random()
-	var powerup_instance = powerup.instance()
+	var powerup_instance = powerup.instantiate()
 	powerup_instance.position = Vector3(randf_range(-h_lenght, h_lenght), 0, randf_range(-l_length, l_length))
 	add_child(powerup_instance)
