@@ -19,7 +19,11 @@ func _ready() -> void:
 
 
 # c = coche que chocó
+<<<<<<< Updated upstream
 func _on_car_body_entered(_other_body: Node, c: RigidBody3D) -> void:
+=======
+func _on_car_body_entered(body: Node3D) -> void:
+>>>>>>> Stashed changes
 	# Reproducir sonido en la posición del coche que chocó
 	play_crash(c.global_transform.origin)
 
