@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://01huhnyda31"]
+
+[ext_resource type="Script" uid="uid://dhnckbmpfvlsb" path="res://scripts/powerup_spawner.gd" id="1_x3vp6"]
+[ext_resource type="PackedScene" uid="uid://ydt14k1ho0yf" path="res://scenes/speed_powerup.tscn" id="2_cr6cv"]
+[ext_resource type="PackedScene" uid="uid://cny5rkxpvky2g" path="res://scenes/weight_powerup.tscn" id="3_uryyp"]
+
+[node name="PowerupSpawner" type="Node3D"]
+script = ExtResource("1_x3vp6")
+powerups = Array[PackedScene]([ExtResource("2_cr6cv"), ExtResource("3_uryyp")])
