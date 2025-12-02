@@ -8,14 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://b7v6eoiicf4ow" path="res://scenes/mapas/metal_obstacle.tscn" id="5_gnpnh"]
 [ext_resource type="PackedScene" uid="uid://5demtyrwtxd3" path="res://scenes/mapas/moving_plataform.tscn" id="6_2r1u8"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnw7v"]
-albedo_texture = ExtResource("1_r8nin")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r8nin"]
-albedo_texture = ExtResource("1_r8nin")
-roughness = 0.8
-uv1_scale = Vector3(4, 4, 4)
-
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lw1ml"]
 sky_horizon_color = Color(0.3301123, 0.69798905, 0.90226805, 1)
 
@@ -25,6 +17,14 @@ sky_material = SubResource("ProceduralSkyMaterial_lw1ml")
 [sub_resource type="Environment" id="Environment_kfvgn"]
 background_mode = 2
 sky = SubResource("Sky_e6nqe")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnw7v"]
+albedo_texture = ExtResource("1_r8nin")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r8nin"]
+albedo_texture = ExtResource("1_r8nin")
+roughness = 0.8
+uv1_scale = Vector3(4, 4, 4)
 
 [sub_resource type="GDScript" id="GDScript_w22il"]
 script/source = "extends Node3D
@@ -69,21 +69,21 @@ func _on_player_left(player_slot: int):
 
 [node name="Mapa1" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kfvgn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9996771, -0.015637556, 0.020027399, -0.020863267, -0.9550584, 0.29568258, 0.014503582, -0.29600498, -0.9550763, -1.1395097, 12.581999, -0.2736163)
+light_color = Color(0.7884163, 0.84149975, 0.9813692, 1)
+light_energy = 2.0
+script = ExtResource("2_lw1ml")
+
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009757996, -0.044612885, 0.05149412)
 material_override = SubResource("StandardMaterial3D_tnw7v")
 use_collision = true
 size = Vector3(70, 1, 70)
 material = SubResource("StandardMaterial3D_r8nin")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_kfvgn")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.99967706, -0.015637552, 0.0200274, -0.020863265, -0.95505834, 0.29568255, 0.014503581, -0.29600495, -0.9550762, -1.1395097, 12.581999, -0.2736163)
-light_color = Color(0.7884163, 0.84149975, 0.9813692, 1)
-light_energy = 2.0
-script = ExtResource("2_lw1ml")
 
 [node name="CarSpawner" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0)
