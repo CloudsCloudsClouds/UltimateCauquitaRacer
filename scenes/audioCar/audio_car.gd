@@ -18,6 +18,7 @@ func _on_car_body_entered(body: RigidBody3D) -> void:
 	# Reproducir sonido en la posición del coche que chocó
 	# Esto significa que se choco
 	if body is PlayerCar:
+		print_debug("Impacto! Sonando choque")
 		# Elige un sonido al azar
 		var audio = crash_sounds.pick_random()
 		# Crear nuevo recurso
