@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://f6578c6mo60j" path="res://assets/sprites/grass/tilable-IMG_0044.png" id="1_r8nin"]
 [ext_resource type="Script" uid="uid://bi8ilff817lag" path="res://scenes/mapas/directional_light_3d.gd" id="2_lw1ml"]
-[ext_resource type="PackedScene" uid="uid://dt1pgo8jfs24j" path="res://scenes/car.tscn" id="2_r8nin"]
+[ext_resource type="PackedScene" uid="uid://dt1pgo8jfs24j" path="res://car.tscn" id="2_r8nin"]
 [ext_resource type="Script" uid="uid://d23rp1m37a4he" path="res://scripts/camera_follower.gd" id="2_w22il"]
 [ext_resource type="PackedScene" uid="uid://45w3u32o02ey" path="res://scenes/mapas/cone_obstacle.tscn" id="4_tnw7v"]
 [ext_resource type="PackedScene" uid="uid://b7v6eoiicf4ow" path="res://scenes/mapas/metal_obstacle.tscn" id="5_gnpnh"]
