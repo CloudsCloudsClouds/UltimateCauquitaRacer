@@ -42,6 +42,7 @@ func _on_player_left(player_slot: int):
 		spawned_cars.erase(player_slot)
 
 func _on_car_destroyed(mycar: PlayerCar):
+	# TODO Tienes que arreglar el bug con camerafollow
 	if spawned_cars.has(mycar):
 		spawned_cars.erase(car)
 		camera_follower.remove_objective(mycar)
