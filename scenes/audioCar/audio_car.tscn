@@ -1,11 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cm32r0ly0yold"]
+[gd_scene load_steps=5 format=3 uid="uid://cm32r0ly0yold"]
 
-[ext_resource type="AudioStream" uid="uid://dx5t5sa2in04w" path="res://scenes/audioCar/car_crash_sound.mp3" id="1_148kl"]
 [ext_resource type="Script" uid="uid://3qu2a8ld47uq" path="res://scenes/audioCar/audio_car.gd" id="1_gli4c"]
+[ext_resource type="AudioStream" uid="uid://cuwgndsda0ge3" path="res://assets/audio/hit1.wav" id="2_5tk4x"]
+[ext_resource type="AudioStream" uid="uid://bb8hyagvnrn7m" path="res://assets/audio/hit2.wav" id="3_u134q"]
+[ext_resource type="AudioStream" uid="uid://cqjq4p5a8djfw" path="res://assets/audio/hit3.wav" id="4_dsk1k"]
 
 [node name="AudioCar" type="Node3D"]
 script = ExtResource("1_gli4c")
-
-[node name="CrashPlayer" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("1_148kl")
-max_distance = 50.0
+crash_sounds = Array[AudioStream]([ExtResource("2_5tk4x"), ExtResource("3_u134q"), ExtResource("4_dsk1k")])

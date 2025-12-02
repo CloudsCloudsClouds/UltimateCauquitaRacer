@@ -2,7 +2,7 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://dx5t5sa2in04w"
+uid="uid://cb56rseiy732n"
 path="res://.godot/imported/car_crash_sound.mp3-d3bcc3bad1342780fef1c25951ed5d74.mp3str"
 
 [deps]
@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/car_crash_sound.mp3-d3bcc3bad1342780fef1c2595
 [params]
 
 loop=false
-loop_offset=0.0
-bpm=0.0
+loop_offset=0
+bpm=0
 beat_count=0
 bar_beats=4

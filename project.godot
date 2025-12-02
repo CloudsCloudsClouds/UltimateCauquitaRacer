@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 MultiplayerInput="*res://addons/multiplayer_input/multiplayer_input.gd"
 PlayerManager="*res://autoloads/player_manager.gd"
-AudioCar="*res://scenes/audioCar/audio_car.tscn"
+ParticleManager="*res://autoloads/particle_manager.gd"
 
 [dotnet]
 
