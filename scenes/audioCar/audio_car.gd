@@ -12,6 +12,19 @@ func _ready() -> void:
 	parent.contact_monitor = true
 	parent.max_contacts_reported = 4
 	parent.connect("body_entered", _on_car_body_entered)
+	parent.connect("suicide", _on_car_destroy)
+
+func _on_car_destroy() -> void:
+	# Reproducir sonido en la posicion de la explosion
+	# Osea que se murio
+	print_debug("Muerte! Sonando explosion")
+	var audio = explosion_sounds.pick_random()
+	var audio_stream = AudioStreamPlayer3D.new()
+	audio_stream.stream = audio
+	
+	audio_stream.pitch_scale += randf_range(-0.1, 0.1)
+	add_child(audio_stream)
+	audio_stream.play()
 
 # c = coche que chocó
 func _on_car_body_entered(body: RigidBody3D) -> void:

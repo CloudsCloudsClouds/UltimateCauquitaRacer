@@ -38,6 +38,5 @@ func _on_player_left(player_slot: int):
 	print("Car Spawner: Player ", player_slot, " left.")
 	if spawned_cars.has(player_slot):
 		camera_follower.remove_objective(spawned_cars[player_slot])
-		ParticleManager.explode(spawned_cars[player_slot].global_position)
-		spawned_cars[player_slot].queue_free()
+		spawned_cars[player_slot].destroy_car()
 		spawned_cars.erase(player_slot)
