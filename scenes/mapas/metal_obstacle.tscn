@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7v6eoiicf4ow"]
+
+[ext_resource type="Texture2D" uid="uid://dvnx0ch2s6w0" path="res://assets/pista-de-carreras/src/assets2/Previews/bridge-pillar.png" id="1_j6jqs"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7nf0g"]
+height = 0.34651086
+radius = 0.047851563
+
+[node name="metal_obstacle" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.0000002, 0, 0, 0, 0.9989029, -0.046827525, 0, 0.046827525, 0.99890304, 5.0681876e-05, -0.0023536729, -7.9265614e-05)
+shape = SubResource("CylinderShape3D_7nf0g")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 1
+texture = ExtResource("1_j6jqs")

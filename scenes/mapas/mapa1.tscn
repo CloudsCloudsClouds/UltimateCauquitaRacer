@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3502udra48hm"]
+[gd_scene load_steps=10 format=3 uid="uid://b3502udra48hm"]
 
 [ext_resource type="Texture2D" uid="uid://f6578c6mo60j" path="res://assets/sprites/grass/tilable-IMG_0044.png" id="1_r8nin"]
 [ext_resource type="PackedScene" path="res://scenes/car.tscn" id="2_r8nin"]
 [ext_resource type="Script" path="res://scripts/camera_follower.gd" id="2_w22il"]
+[ext_resource type="PackedScene" uid="uid://45w3u32o02ey" path="res://scenes/mapas/cone_obstacle.tscn" id="4_tnw7v"]
+[ext_resource type="PackedScene" uid="uid://b7v6eoiicf4ow" path="res://scenes/mapas/metal_obstacle.tscn" id="5_gnpnh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnw7v"]
 albedo_texture = ExtResource("1_r8nin")
@@ -56,6 +58,7 @@ func _on_player_left(player_slot: int):
 [node name="Mapa1" type="Node3D"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009757996, -0.044612885, 0.05149412)
 material_override = SubResource("StandardMaterial3D_tnw7v")
 use_collision = true
 size = Vector3(50, 1, 50)
@@ -77,3 +80,87 @@ car_view = ExtResource("2_r8nin")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3, 0)
 fov = 90.0
 script = ExtResource("2_w22il")
+
+[node name="ConeObstacle" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, 12)
+
+[node name="ConeObstacle25" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.9608631, 5.7421484, -6.812521)
+
+[node name="ConeObstacle4" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.816078, 1.2, -15.486184)
+
+[node name="ConeObstacle3" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, -13.110048)
+
+[node name="ConeObstacle5" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, -10.06202)
+
+[node name="ConeObstacle6" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, -5.295083)
+
+[node name="ConeObstacle7" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, -1.8099318)
+
+[node name="ConeObstacle8" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, 2.4876204)
+
+[node name="ConeObstacle9" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, 5.820319)
+
+[node name="ConeObstacle10" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, 18.82486)
+
+[node name="ConeObstacle11" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, 9.054977)
+
+[node name="ConeObstacle2" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, 12.755152)
+
+[node name="ConeObstacle12" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, 6.9650326)
+
+[node name="ConeObstacle13" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, -0.24711418)
+
+[node name="ConeObstacle14" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, -4.4720287)
+
+[node name="ConeObstacle15" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, -7.7769527)
+
+[node name="ConeObstacle16" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, -10.24345)
+
+[node name="ConeObstacle17" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, -13.183498)
+
+[node name="ConeObstacle18" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, -19.35057)
+
+[node name="ConeObstacle19" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, -21.21064)
+
+[node name="ConeObstacle20" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.169582, 1.2, -21.21064)
+
+[node name="ConeObstacle21" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.169582, 1.2, -19.709146)
+
+[node name="ConeObstacle22" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.169582, 1.2, -17.902899)
+
+[node name="ConeObstacle23" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.169582, 1.2, -16.103466)
+
+[node name="ConeObstacle24" parent="." instance=ExtResource("4_tnw7v")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -16.257988, 1.2, 19.63113)
+
+[node name="metal_obstacle" parent="." instance=ExtResource("5_gnpnh")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 1.9, 16)
+
+[node name="metal_obstacle3" parent="." instance=ExtResource("5_gnpnh")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -8.611459, 1.9, 16)
+
+[node name="metal_obstacle2" parent="." instance=ExtResource("5_gnpnh")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 9.438, 1.9, 16)
