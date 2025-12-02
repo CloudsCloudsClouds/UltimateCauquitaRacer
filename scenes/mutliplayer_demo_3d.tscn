@@ -89,5 +89,7 @@ fov = 90.0
 script = ExtResource("3_8dsiy")
 metadata/_custom_type_script = "uid://d23rp1m37a4he"
 
+[node name="AudioListener3D" type="AudioListener3D" parent="CarSpawner/CameraFollower"]
+
 [node name="SpeedPowerup" parent="." instance=ExtResource("4_oum6t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.081356, -0.24064355, -0.3776493)
