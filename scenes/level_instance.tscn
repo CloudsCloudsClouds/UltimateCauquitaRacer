@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bl2qmiqs11qpw"]
+
+[node name="LevelInstance" type="Node3D"]
