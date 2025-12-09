@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b5ople85dfdrg"]
 
-[ext_resource type="PackedScene" uid="uid://dt1pgo8jfs24j" path="res://car.tscn" id="1_27c0p"]
+[ext_resource type="PackedScene" uid="uid://dt1pgo8jfs24j" path="res://scenes/car.tscn" id="1_27c0p"]
 
 [sub_resource type="Environment" id="Environment_yo124"]
 

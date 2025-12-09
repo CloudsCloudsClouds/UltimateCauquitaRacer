@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://qxt85cqy33ed"]
 
 [ext_resource type="Script" uid="uid://cq38k8e1t8aba" path="res://scripts/player_spawner.gd" id="1_27dp6"]
-[ext_resource type="PackedScene" uid="uid://dt1pgo8jfs24j" path="res://car.tscn" id="2_7m7wc"]
+[ext_resource type="PackedScene" uid="uid://dt1pgo8jfs24j" path="res://scenes/car.tscn" id="2_7m7wc"]
 [ext_resource type="Script" uid="uid://d23rp1m37a4he" path="res://scripts/camera_follower.gd" id="2_hiofm"]
 
 [node name="PlayerSpawner" type="Node3D"]

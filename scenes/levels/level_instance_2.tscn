@@ -1,0 +1,119 @@
+[gd_scene load_steps=13 format=3 uid="uid://dgfhkyfs50sww"]
+
+[ext_resource type="Script" uid="uid://ec3s57jmwntw" path="res://scripts/level_instance.gd" id="1_d4b72"]
+[ext_resource type="Script" uid="uid://bi8ilff817lag" path="res://scenes/mapas/directional_light_3d.gd" id="2_buv8s"]
+[ext_resource type="Texture2D" uid="uid://hlgupwthr6x3" path="res://assets/sprites/grass/tilable-IMG_0044_nm.png" id="3_2usg2"]
+[ext_resource type="PackedScene" uid="uid://5demtyrwtxd3" path="res://scenes/mapas/moving_plataform.tscn" id="4_8wn7m"]
+[ext_resource type="PackedScene" uid="uid://b7v6eoiicf4ow" path="res://scenes/mapas/metal_obstacle.tscn" id="5_wg5ky"]
+[ext_resource type="Script" uid="uid://d23rp1m37a4he" path="res://scripts/camera_follower.gd" id="6_peanj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uiwv3"]
+sky_horizon_color = Color(0.3301123, 0.69798905, 0.90226805, 1)
+
+[sub_resource type="Sky" id="Sky_e6nqe"]
+sky_material = SubResource("ProceduralSkyMaterial_uiwv3")
+
+[sub_resource type="Environment" id="Environment_68jmy"]
+background_mode = 2
+sky = SubResource("Sky_e6nqe")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1gls"]
+albedo_texture = ExtResource("3_2usg2")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ochxy"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_buv8s"]
+size = Vector3(5, 1, 5)
+
+[node name="LevelInstance2" type="Node3D" node_paths=PackedStringArray("car_spawn_area", "power_spawn_area", "view_camera")]
+script = ExtResource("1_d4b72")
+car_spawn_area = NodePath("PlayerSpawn")
+power_spawn_area = NodePath("Powerups")
+view_camera = NodePath("CameraFollower")
+metadata/_custom_type_script = "uid://ec3s57jmwntw"
+
+[node name="mapa2" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="mapa2"]
+environment = SubResource("Environment_68jmy")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="mapa2"]
+transform = Transform3D(0.9996771, -0.015637554, 0.020027399, -0.022341287, -0.91639745, 0.3996455, 0.012103579, -0.39996395, -0.916451, -1.1395097, 28.380465, -0.2736163)
+light_color = Color(1, 0.564266, 0.71218973, 1)
+light_energy = 2.0
+script = ExtResource("2_buv8s")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="mapa2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009757996, -0.044612885, 0.05149412)
+material_override = SubResource("StandardMaterial3D_o1gls")
+use_collision = true
+size = Vector3(40, 1, 40)
+
+[node name="MovingPlataform" parent="mapa2" instance=ExtResource("4_8wn7m")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13.872118, 0.973166, -13.839784)
+mode = 2
+rotate_speed_deg = 300.0
+
+[node name="MovingPlataform2" parent="mapa2" instance=ExtResource("4_8wn7m")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12.060551, 0.973166, -13.839784)
+mode = 2
+rotate_speed_deg = 300.0
+
+[node name="MovingPlataform3" parent="mapa2" instance=ExtResource("4_8wn7m")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12.060551, 0.973166, 13.334033)
+mode = 2
+rotate_speed_deg = 300.0
+
+[node name="MovingPlataform4" parent="mapa2" instance=ExtResource("4_8wn7m")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13.194712, 0.973166, 13.334033)
+mode = 2
+rotate_speed_deg = 300.0
+
+[node name="metal_obstacle" parent="mapa2" instance=ExtResource("5_wg5ky")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -15.9114485, 1.1687707, 6.267326)
+
+[node name="metal_obstacle2" parent="mapa2" instance=ExtResource("5_wg5ky")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -6.20391, 1.1687707, 15.305578)
+
+[node name="metal_obstacle3" parent="mapa2" instance=ExtResource("5_wg5ky")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 4.0112524, 1.1687707, 16.513506)
+
+[node name="metal_obstacle4" parent="mapa2" instance=ExtResource("5_wg5ky")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 14.215999, 1.1687707, 6.88223)
+
+[node name="metal_obstacle5" parent="mapa2" instance=ExtResource("5_wg5ky")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 14.215999, 1.1687707, -8.358714)
+
+[node name="metal_obstacle6" parent="mapa2" instance=ExtResource("5_wg5ky")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 4.8353977, 1.1687707, -16.761684)
+
+[node name="metal_obstacle7" parent="mapa2" instance=ExtResource("5_wg5ky")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -16.14507, 1.1687707, -9.957115)
+
+[node name="metal_obstacle8" parent="mapa2" instance=ExtResource("5_wg5ky")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -7.391196, 1.1687707, -16.547241)
+
+[node name="metal_obstacle9" parent="mapa2" instance=ExtResource("5_wg5ky")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -0.90547514, 1.1687707, -16.547241)
+
+[node name="metal_obstacle10" parent="mapa2" instance=ExtResource("5_wg5ky")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 13.495842, 1.5781955, -1.3506927)
+
+[node name="metal_obstacle12" parent="mapa2" instance=ExtResource("5_wg5ky")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -17.122534, 1.5781955, -1.3506927)
+
+[node name="metal_obstacle11" parent="mapa2" instance=ExtResource("5_wg5ky")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -1.2395282, 1.5781955, 15.824469)
+
+[node name="CameraFollower" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 16, 0)
+fov = 90.0
+script = ExtResource("6_peanj")
+
+[node name="PlayerSpawn" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0)
+shape = SubResource("BoxShape3D_ochxy")
+
+[node name="Powerups" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_buv8s")
