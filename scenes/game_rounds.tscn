@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://d3q02ek4esrio"]
+[gd_scene load_steps=2 format=3 uid="uid://d3q02ek4esrio"]
+
+[ext_resource type="Script" uid="uid://b1fsptmore1en" path="res://scripts/game_rounds.gd" id="1_ssfes"]
 
 [node name="GameRounds" type="Node3D"]
+script = ExtResource("1_ssfes")
