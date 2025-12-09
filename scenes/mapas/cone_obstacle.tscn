@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://45w3u32o02ey"]
 
-[ext_resource type="Texture2D" uid="uid://dy3x2jt07x3j6" path="res://assets/pista-de-carreras/src/assets/Previews/item-cone.png" id="1_2rxq3"]
+[ext_resource type="Texture2D" uid="uid://dy3x2jt07x3j6" path="res://autoloads/assets/pista-de-carreras/src/assets/Previews/item-cone.png" id="1_2rxq3"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_2rxq3"]
 height = 0.8701172

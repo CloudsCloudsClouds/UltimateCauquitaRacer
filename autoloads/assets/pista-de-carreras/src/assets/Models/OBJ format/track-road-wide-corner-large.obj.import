@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dv70l6t2mt2mr"
+path="res://.godot/imported/track-road-wide-corner-large.obj-f2c973b6de4e622207e34d7586f1a75d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/track-road-wide-corner-large.obj-f2c973b6de4e622207e34d7586f1a75d.mesh"]
+
+source_file="res://autoloads/assets/pista-de-carreras/src/assets/Models/OBJ format/track-road-wide-corner-large.obj"
+dest_files=["res://.godot/imported/track-road-wide-corner-large.obj-f2c973b6de4e622207e34d7586f1a75d.mesh", "res://.godot/imported/track-road-wide-corner-large.obj-f2c973b6de4e622207e34d7586f1a75d.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

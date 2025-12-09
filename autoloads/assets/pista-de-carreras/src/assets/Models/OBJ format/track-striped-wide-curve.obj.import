@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c55cu3i67fak4"
+path="res://.godot/imported/track-striped-wide-curve.obj-08d96e63f232314189508b7e44ca9fb1.mesh"
+
+[deps]
+
+files=["res://.godot/imported/track-striped-wide-curve.obj-08d96e63f232314189508b7e44ca9fb1.mesh"]
+
+source_file="res://autoloads/assets/pista-de-carreras/src/assets/Models/OBJ format/track-striped-wide-curve.obj"
+dest_files=["res://.godot/imported/track-striped-wide-curve.obj-08d96e63f232314189508b7e44ca9fb1.mesh", "res://.godot/imported/track-striped-wide-curve.obj-08d96e63f232314189508b7e44ca9fb1.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

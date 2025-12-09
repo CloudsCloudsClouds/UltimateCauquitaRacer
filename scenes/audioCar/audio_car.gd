@@ -2,6 +2,9 @@ class_name AudioCar
 extends Node3D
 
 @onready var parent: PlayerCar = get_parent()
+#@onready var parent := get_parent()
+
+
 
 @export var crash_sounds: Array[AudioStream]
 @export var explosion_sounds: Array[AudioStream]
@@ -14,7 +17,7 @@ func _ready() -> void:
 	parent.connect("body_entered", _on_car_body_entered)
 
 # c = coche que chocó
-func _on_car_body_entered(body: RigidBody3D) -> void:
+func _on_car_body_entered(body: Node3D) -> void:
 	# Reproducir sonido en la posición del coche que chocó
 	# Esto significa que se choco
 	if body is PlayerCar:

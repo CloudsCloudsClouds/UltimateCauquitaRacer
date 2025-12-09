@@ -1,10 +1,10 @@
 [gd_scene load_steps=14 format=3 uid="uid://dbp2fa0j1vk54"]
 
 [ext_resource type="Script" uid="uid://bi8ilff817lag" path="res://scenes/mapas/directional_light_3d.gd" id="1_b64jy"]
-[ext_resource type="Texture2D" uid="uid://cfyk4sn0w2ug0" path="res://assets/sprites/grass/tilable-IMG_0044-lush.png" id="2_1byka"]
-[ext_resource type="Texture2D" uid="uid://f6578c6mo60j" path="res://assets/sprites/grass/tilable-IMG_0044.png" id="2_kvvb3"]
+[ext_resource type="Texture2D" uid="uid://cfyk4sn0w2ug0" path="res://autoloads/assets/sprites/grass/tilable-IMG_0044-lush.png" id="2_1byka"]
+[ext_resource type="Texture2D" uid="uid://f6578c6mo60j" path="res://autoloads/assets/sprites/grass/tilable-IMG_0044.png" id="2_kvvb3"]
 [ext_resource type="PackedScene" uid="uid://5demtyrwtxd3" path="res://scenes/mapas/moving_plataform.tscn" id="4_f608v"]
-[ext_resource type="PackedScene" path="res://scenes/car.tscn" id="5_dxu4g"]
+[ext_resource type="PackedScene" uid="uid://dt1pgo8jfs24j" path="res://scenes/car.tscn" id="5_dxu4g"]
 [ext_resource type="Script" path="res://scripts/camera_follower.gd" id="6_iuecw"]
 [ext_resource type="PackedScene" uid="uid://drqlbi6rwlfpx" path="res://scenes/mapas/rolling_sphere.tscn" id="7_iuecw"]
 

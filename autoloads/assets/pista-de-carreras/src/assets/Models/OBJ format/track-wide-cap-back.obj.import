@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cco0qenh7r4se"
+path="res://.godot/imported/track-wide-cap-back.obj-a8eeb330ead18e7b61eadba8ab31ddfb.mesh"
+
+[deps]
+
+files=["res://.godot/imported/track-wide-cap-back.obj-a8eeb330ead18e7b61eadba8ab31ddfb.mesh"]
+
+source_file="res://autoloads/assets/pista-de-carreras/src/assets/Models/OBJ format/track-wide-cap-back.obj"
+dest_files=["res://.godot/imported/track-wide-cap-back.obj-a8eeb330ead18e7b61eadba8ab31ddfb.mesh", "res://.godot/imported/track-wide-cap-back.obj-a8eeb330ead18e7b61eadba8ab31ddfb.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
