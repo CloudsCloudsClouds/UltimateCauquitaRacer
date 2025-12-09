@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7v6eoiicf4ow"]
 
-[ext_resource type="Texture2D" uid="uid://dvnx0ch2s6w0" path="res://assets/pista-de-carreras/src/assets2/Previews/bridge-pillar.png" id="1_j6jqs"]
+[ext_resource type="Texture2D" uid="uid://dvnx0ch2s6w0" path="res://autoloads/assets/pista-de-carreras/src/assets2/Previews/bridge-pillar.png" id="1_j6jqs"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7nf0g"]
 height = 0.34651086

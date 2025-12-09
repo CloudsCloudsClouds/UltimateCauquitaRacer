@@ -1,6 +1,9 @@
 extends Node
 
-const EXPLOSION = preload("uid://bcka5sr1uysw3")
+const EXPLOSION = preload("res://scenes/explosion.tscn")
+
+
+
 
 
 

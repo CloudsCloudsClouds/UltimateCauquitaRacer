@@ -1,0 +1,126 @@
+[gd_scene load_steps=15 format=3 uid="uid://bdernc7g2jiek"]
+
+[ext_resource type="Script" uid="uid://bi8ilff817lag" path="res://scenes/mapas/directional_light_3d.gd" id="1_cbcio"]
+[ext_resource type="Texture2D" uid="uid://cfyk4sn0w2ug0" path="res://autoloads/assets/sprites/grass/tilable-IMG_0044-lush.png" id="2_qk0tq"]
+[ext_resource type="Texture2D" uid="uid://f6578c6mo60j" path="res://autoloads/assets/sprites/grass/tilable-IMG_0044.png" id="3_qk0tq"]
+[ext_resource type="PackedScene" uid="uid://dt1pgo8jfs24j" path="res://scenes/car.tscn" id="4_q1fbx"]
+[ext_resource type="Script" path="res://scripts/camera_follower.gd" id="5_hbyo2"]
+[ext_resource type="PackedScene" uid="uid://dnhsy14su6pti" path="res://scenes/mapas/big_ramp.tscn" id="6_hbyo2"]
+[ext_resource type="PackedScene" uid="uid://drqlbi6rwlfpx" path="res://scenes/mapas/rolling_sphere.tscn" id="7_72q6l"]
+[ext_resource type="PackedScene" uid="uid://5demtyrwtxd3" path="res://scenes/mapas/moving_plataform.tscn" id="8_72q6l"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q1fbx"]
+sky_horizon_color = Color(0.3301123, 0.69798905, 0.90226805, 1)
+
+[sub_resource type="Sky" id="Sky_e6nqe"]
+sky_material = SubResource("ProceduralSkyMaterial_q1fbx")
+
+[sub_resource type="Environment" id="Environment_hbyo2"]
+background_mode = 2
+sky = SubResource("Sky_e6nqe")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72q6l"]
+albedo_texture = ExtResource("2_qk0tq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5gfj0"]
+albedo_color = Color(1, 1, 0.29803923, 1)
+albedo_texture = ExtResource("3_qk0tq")
+roughness = 0.8
+uv1_scale = Vector3(4, 4, 4)
+
+[sub_resource type="GDScript" id="GDScript_5gfj0"]
+script/source = "extends Node3D
+
+@export var car_view: PackedScene # Assign your car.tscn here in the editor
+
+var spawned_cars = {} # Map player_slot to car node
+@onready var camera_follower: CameraFollower = $CameraFollower
+
+func _ready():
+	PlayerManager.player_joined.connect(_on_player_joined)
+	PlayerManager.player_left.connect(_on_player_left)
+
+func _process(delta: float) -> void:
+	PlayerManager.handle_join_input()
+	PlayerManager.handle_leave_input()
+
+func _on_player_joined(player_slot: int, device_id: int):
+	print(\"Car Spawner: Player \", player_slot, \" joined with device \", device_id)
+	var new_car = car_view.instantiate() as PlayerCar
+	new_car.acceleration = 1500
+	new_car.max_speed = 40
+	new_car.tire_max_turn_degress = 35
+	add_child(new_car)
+
+	# Initialize the car's input through its init function
+	if new_car.has_method(\"init\"):
+		new_car.init(player_slot, device_id)
+		new_car.position = Vector3(randf_range(-10, 10), 0.5, randf_range(-10, 10)) # Example spawn
+		spawned_cars[player_slot] = new_car
+		camera_follower.add_objective(new_car)
+	else:
+		printerr(\"Spawned car does not have an 'init' method!\")
+
+func _on_player_left(player_slot: int):
+	print(\"Car Spawner: Player \", player_slot, \" left.\")
+	if spawned_cars.has(player_slot):
+		camera_follower.remove_objective(spawned_cars[player_slot])
+		spawned_cars[player_slot].queue_free()
+		spawned_cars.erase(player_slot)
+"
+
+[node name="Mapa5" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hbyo2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9996771, -0.015637556, 0.020027399, -0.020863267, -0.9550584, 0.29568258, 0.014503582, -0.29600498, -0.9550763, -1.1395097, 12.581999, -0.2736163)
+light_color = Color(0.7884163, 0.84149975, 0.9813692, 1)
+light_energy = 2.0
+script = ExtResource("1_cbcio")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009757996, -0.044612885, 0.05149412)
+material_override = SubResource("StandardMaterial3D_72q6l")
+use_collision = true
+size = Vector3(90, 1, 70)
+material = SubResource("StandardMaterial3D_5gfj0")
+
+[node name="CarSpawner" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0)
+script = SubResource("GDScript_5gfj0")
+car_view = ExtResource("4_q1fbx")
+
+[node name="CameraFollower" type="Camera3D" parent="CarSpawner"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3, 0)
+fov = 90.0
+script = ExtResource("5_hbyo2")
+
+[node name="BigRamp" parent="." instance=ExtResource("6_hbyo2")]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, 29.142746, -0.044612885, 2.4701958)
+
+[node name="BigRamp2" parent="." instance=ExtResource("6_hbyo2")]
+transform = Transform3D(-4.3711385e-08, -0.64278775, -0.76604426, 0, 0.7660443, -0.6427877, 0.99999994, -2.8097146e-08, -3.3484856e-08, -30.405699, -0.044612885, 2.2152615)
+
+[node name="RollingSphere" parent="." instance=ExtResource("7_72q6l")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.9288275, -18.212326)
+sync_to_physics = false
+floor_path = NodePath("../CSGBox3D")
+
+[node name="RollingSphere2" parent="." instance=ExtResource("7_72q6l")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12.363519, 1.8929448, 15.712381)
+sync_to_physics = false
+floor_path = NodePath("../CSGBox3D")
+roll_speed_mul = 2.0
+sphere_radius = 5.0
+
+[node name="MovingPlataform" parent="." instance=ExtResource("8_72q6l")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -12.875659, 5.497317, -4.1299186)
+mode = 2
+rotate_speed_deg = 450.0
+
+[node name="MovingPlataform2" parent="." instance=ExtResource("8_72q6l")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.27728, 4.9535465, 8.242123)
+mode = 2
+rotate_speed_deg = 450.0
