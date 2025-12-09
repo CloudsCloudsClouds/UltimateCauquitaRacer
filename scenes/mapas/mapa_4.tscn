@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://duhxuxpxhxpb6"]
+[gd_scene load_steps=13 format=3 uid="uid://duhxuxpxhxpb6"]
 
 [ext_resource type="Script" uid="uid://bi8ilff817lag" path="res://scenes/mapas/directional_light_3d.gd" id="1_aklkl"]
 [ext_resource type="Texture2D" uid="uid://f6578c6mo60j" path="res://autoloads/assets/sprites/grass/tilable-IMG_0044.png" id="2_c6lqn"]
 [ext_resource type="Texture2D" uid="uid://cogb33wn0rpup" path="res://autoloads/assets/sprites/grass/tilable-IMG_0044-grey1.png" id="2_yyerg"]
 [ext_resource type="PackedScene" uid="uid://dt1pgo8jfs24j" path="res://scenes/car.tscn" id="3_c6lqn"]
 [ext_resource type="Script" path="res://scripts/camera_follower.gd" id="3_yyerg"]
+[ext_resource type="PackedScene" uid="uid://dnhsy14su6pti" path="res://scenes/mapas/big_ramp.tscn" id="6_i50y4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i50y4"]
 sky_horizon_color = Color(0.3301123, 0.69798905, 0.90226805, 1)
@@ -92,3 +93,9 @@ car_view = ExtResource("3_c6lqn")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3, 0)
 fov = 90.0
 script = ExtResource("3_yyerg")
+
+[node name="BigRamp" parent="." instance=ExtResource("6_i50y4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.450256)
+
+[node name="BigRamp2" parent="." instance=ExtResource("6_i50y4")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 23.89524)
