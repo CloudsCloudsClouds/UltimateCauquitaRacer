@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dbeyojcw6pmcx" path="res://scenes/rascast_car.gd" id="1_qt2eu"]
 [ext_resource type="Script" uid="uid://dhkeqghi2w2oa" path="res://scenes/raycast_wheel.gd" id="2_50v30"]
-[ext_resource type="PackedScene" path="res://scenes/audioCar/audio_car.tscn" id="3_50v30"]
+[ext_resource type="PackedScene" uid="uid://cm32r0ly0yold" path="res://scenes/audioCar/audio_car.tscn" id="3_50v30"]
 
 [sub_resource type="Curve" id="Curve_s8sy0"]
 _data = [Vector2(0.01421801, 0.6741574), 0.0, 0.0, 0, 0, Vector2(0.37914693, 0.9550562), 0.0, 0.0, 0, 0, Vector2(0.6208531, 0.8764045), 0.0, 0.0, 0, 0, Vector2(0.97630334, 0.26966298), 0.0, 0.0, 0, 0]

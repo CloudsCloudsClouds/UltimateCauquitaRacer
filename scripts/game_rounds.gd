@@ -394,9 +394,12 @@ func end_round(winner_car: PlayerCar) -> void:
 	var tween = create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)  # Continue during pause
 
-	# TODO: Zoom camera to winner
-	# For now, just wait 5 seconds
-	tween.tween_interval(5.0)
+
+	# Zoom to objective and wait one second
+	# Cam3d can't zoom, so let's move the cam closer to the objective
+	var cam := current_level.view_camera
+	tween.tween_property(cam, "position", cam.position + Vector3(0, 0, -10), 1.0)
+	tween.tween_interval(1.0)
 
 	# Callback after animation
 	tween.tween_callback(_on_round_end_animation_complete.bind(winner_slot))

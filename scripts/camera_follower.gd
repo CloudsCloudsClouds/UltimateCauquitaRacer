@@ -7,6 +7,8 @@ extends Camera3D
 # For linear interpolation
 var look_objective := Vector3.ZERO
 
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func add_objective(obj: PlayerCar) -> void:
 	print_debug("Adding objective:", obj)
@@ -16,14 +18,17 @@ func remove_objective(obj: PlayerCar) -> void:
 	if objectives.has(obj):
 		objectives.erase(obj)
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	if objectives.is_empty():
 		return
 	var center_position := Vector3.ZERO
 
 	for i:PlayerCar in objectives:
-		center_position += i.position
-		center_position.y += 3
+		if i.is_queued_for_deletion() or !i:
+			pass
+		else:
+			center_position += i.position
+			center_position.y += 3
 
 	center_position /= objectives.size()
 	look_objective = look_objective.lerp(center_position, delta * 3)

@@ -282,6 +282,7 @@ func _do_single_wheel_suspension(ray: RaycastWheel) -> void:
 # You can't scape.
 func destroy_car() -> void:
 	ParticleManager.explode(global_position)
+	$CollisionCar.disabled = true
 	freeze = true
 	emit_signal("destroy", self)
 	visible = false

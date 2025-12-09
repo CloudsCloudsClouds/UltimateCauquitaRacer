@@ -25,7 +25,7 @@ func _on_car_destroy(car: PlayerCar) -> void:
 	var audio_stream = AudioStreamPlayer3D.new()
 	audio_stream.stream = audio
 	
-	audio_stream.pitch_scale += randf_range(-0.1, 0.1)
+	audio_stream.pitch_scale += randf_range(-0.1, 1)
 	audio_stream.position = car.global_position
 	add_child(audio_stream)
 	audio_stream.play()
