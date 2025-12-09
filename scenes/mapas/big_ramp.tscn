@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://hlgupwthr6x3" path="res://autoloads/assets/sprites/grass/tilable-IMG_0044_nm.png" id="1_qyw85"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m7gq0"]
+albedo_color = Color(0.8901961, 0.8117647, 1, 1)
 albedo_texture = ExtResource("1_qyw85")
 
 [node name="BigRamp" type="Node3D"]
