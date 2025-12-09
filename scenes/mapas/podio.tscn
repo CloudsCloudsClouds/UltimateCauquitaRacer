@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=3 uid="uid://j1dhl0pnt6nm"]
+
+[ext_resource type="Script" uid="uid://bi8ilff817lag" path="res://scenes/mapas/directional_light_3d.gd" id="1_nq557"]
+[ext_resource type="Texture2D" uid="uid://f6578c6mo60j" path="res://autoloads/assets/sprites/grass/tilable-IMG_0044.png" id="2_ebn5u"]
+[ext_resource type="Script" path="res://scripts/camera_follower.gd" id="3_8niho"]
+[ext_resource type="PackedScene" uid="uid://5demtyrwtxd3" path="res://scenes/mapas/moving_plataform.tscn" id="4_hf20d"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uryxv"]
+sky_horizon_color = Color(0.3301123, 0.69798905, 0.90226805, 1)
+
+[sub_resource type="Sky" id="Sky_e6nqe"]
+sky_material = SubResource("ProceduralSkyMaterial_uryxv")
+
+[sub_resource type="Environment" id="Environment_8p7qa"]
+background_mode = 2
+sky = SubResource("Sky_e6nqe")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4bk57"]
+albedo_texture = ExtResource("2_ebn5u")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbki6"]
+albedo_color = Color(1, 1, 0.29803923, 1)
+albedo_texture = ExtResource("2_ebn5u")
+roughness = 0.8
+uv1_scale = Vector3(4, 4, 4)
+
+[node name="podio" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8p7qa")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.9996771, -0.015637554, 0.020027399, -0.020863267, -0.9550584, 0.29568258, 0.014503582, -0.29600498, -0.9550763, -1.1395097, 20.52365, -0.2736163)
+light_color = Color(0.29190388, 0.5157934, 0.911853, 1)
+light_energy = 2.0
+script = ExtResource("1_nq557")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009757996, -0.044612885, 0.05149412)
+material_override = SubResource("StandardMaterial3D_4bk57")
+use_collision = true
+size = Vector3(40, 1, 40)
+material = SubResource("StandardMaterial3D_mbki6")
+
+[node name="CameraFollower" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5701688, 0.8215276, 0, -0.8215276, 0.5701688, -1.3314295, 19.13311, 19.261765)
+fov = 115.31249
+script = ExtResource("3_8niho")
+
+[node name="MovingPlataform" parent="." instance=ExtResource("4_hf20d")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -11.884, 5, 5.558)
+mode = 1
+move_amplitude = 4.0
+move_speed = 0.6
+
+[node name="MovingPlataform2" parent="." instance=ExtResource("4_hf20d")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.357, 5, 6.171)
+mode = 1
+move_amplitude = 4.0
+move_speed = 0.6
+
+[node name="MovingPlataform3" parent="." instance=ExtResource("4_hf20d")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14.185, 5, 6.213)
+mode = 1
+move_amplitude = 4.0
+move_speed = 0.6
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0152445, 7.7476435, 5.9676466)
+light_color = Color(0.53252095, 0.33937463, 0.15647885, 1)
+light_energy = 12.0
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0152445, 5.8671026, 5.9676466)
+light_color = Color(0.53252095, 0.33937463, 0.15647885, 1)
+light_energy = 8.0
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0152445, 3.7799826, 5.9676466)
+light_color = Color(0.53252095, 0.33937463, 0.15647885, 1)
+light_energy = 8.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32649612, 5.552845, 5.9676466)
+light_color = Color(0.53252095, 0.33937463, 0.15647885, 1)
+light_energy = 4.0
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32649612, 1.6215782, 5.9676466)
+light_color = Color(0.53252095, 0.33937463, 0.15647885, 1)
+light_energy = 8.0
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32649612, 8.509512, 5.9676466)
+light_color = Color(0.53252095, 0.33937463, 0.15647885, 1)
+light_energy = 12.0
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.861427, 5.361781, 5.9676466)
+light_color = Color(0.53252095, 0.33937463, 0.15647885, 1)
+light_energy = 12.0
+
+[node name="OmniLight3D9" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.187313, 2.6177368, 5.9676466)
+light_color = Color(0.53252095, 0.33937463, 0.15647885, 1)
+light_energy = 8.0
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.281098, 10.29551, 5.9676466)
+light_color = Color(0.53252095, 0.33937463, 0.15647885, 1)
+light_energy = 8.0
+light_volumetric_fog_energy = 1.627
