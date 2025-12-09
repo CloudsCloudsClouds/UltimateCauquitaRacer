@@ -42,7 +42,7 @@ view_camera = NodePath("CameraFollower")
 metadata/_custom_type_script = "uid://ec3s57jmwntw"
 
 [node name="CameraFollower" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 21, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 29, 0)
 fov = 90.0
 script = ExtResource("2_0n07w")
 
