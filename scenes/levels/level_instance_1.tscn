@@ -1,0 +1,195 @@
+[gd_scene load_steps=15 format=3 uid="uid://b8pd72lg13cym"]
+
+[ext_resource type="Script" uid="uid://ec3s57jmwntw" path="res://scripts/level_instance.gd" id="1_y7h6q"]
+[ext_resource type="Script" uid="uid://bi8ilff817lag" path="res://scenes/mapas/directional_light_3d.gd" id="2_jlvp1"]
+[ext_resource type="Texture2D" uid="uid://f6578c6mo60j" path="res://assets/sprites/grass/tilable-IMG_0044.png" id="3_uxfmu"]
+[ext_resource type="PackedScene" uid="uid://45w3u32o02ey" path="res://scenes/mapas/cone_obstacle.tscn" id="4_0kpav"]
+[ext_resource type="PackedScene" uid="uid://b7v6eoiicf4ow" path="res://scenes/mapas/metal_obstacle.tscn" id="5_6gb3a"]
+[ext_resource type="PackedScene" uid="uid://5demtyrwtxd3" path="res://scenes/mapas/moving_plataform.tscn" id="6_emxjo"]
+[ext_resource type="Script" uid="uid://d23rp1m37a4he" path="res://scripts/camera_follower.gd" id="7_mpdsn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lw1ml"]
+sky_horizon_color = Color(0.3301123, 0.69798905, 0.90226805, 1)
+
+[sub_resource type="Sky" id="Sky_e6nqe"]
+sky_material = SubResource("ProceduralSkyMaterial_lw1ml")
+
+[sub_resource type="Environment" id="Environment_kfvgn"]
+background_mode = 2
+sky = SubResource("Sky_e6nqe")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnw7v"]
+albedo_texture = ExtResource("3_uxfmu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r8nin"]
+albedo_texture = ExtResource("3_uxfmu")
+roughness = 0.8
+uv1_scale = Vector3(4, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q0up7"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ngbav"]
+size = Vector3(13, 1, 13)
+
+[node name="LevelInstance1" type="Node3D" node_paths=PackedStringArray("car_spawn_area", "power_spawn_area", "view_camera")]
+script = ExtResource("1_y7h6q")
+car_spawn_area = NodePath("CarSpawn")
+power_spawn_area = NodePath("PowerUps")
+view_camera = NodePath("CameraFollower")
+metadata/_custom_type_script = "uid://ec3s57jmwntw"
+
+[node name="Mapa1" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Mapa1"]
+environment = SubResource("Environment_kfvgn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Mapa1"]
+transform = Transform3D(0.9996771, -0.015637556, 0.020027399, -0.020863267, -0.9550584, 0.29568258, 0.014503582, -0.29600498, -0.9550763, -1.1395097, 12.581999, -0.2736163)
+light_color = Color(0.7884163, 0.84149975, 0.9813692, 1)
+light_energy = 2.0
+script = ExtResource("2_jlvp1")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Mapa1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009757996, -0.044612885, 0.05149412)
+material_override = SubResource("StandardMaterial3D_tnw7v")
+use_collision = true
+size = Vector3(70, 1, 70)
+material = SubResource("StandardMaterial3D_r8nin")
+
+[node name="ConeObstacle" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, 12)
+
+[node name="ConeObstacle25" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.9608631, 5.7421484, -6.812521)
+
+[node name="ConeObstacle4" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.816078, 1.2, -15.486184)
+
+[node name="ConeObstacle3" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, -13.110048)
+
+[node name="ConeObstacle5" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, -10.06202)
+
+[node name="ConeObstacle6" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, -5.295083)
+
+[node name="ConeObstacle7" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, -1.8099318)
+
+[node name="ConeObstacle8" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, 2.4876204)
+
+[node name="ConeObstacle9" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, 5.820319)
+
+[node name="ConeObstacle10" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, 18.82486)
+
+[node name="ConeObstacle11" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20, 1.2, 9.054977)
+
+[node name="ConeObstacle2" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, 12.755152)
+
+[node name="ConeObstacle12" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, 6.9650326)
+
+[node name="ConeObstacle13" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, -0.24711418)
+
+[node name="ConeObstacle14" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, -4.4720287)
+
+[node name="ConeObstacle15" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, -7.7769527)
+
+[node name="ConeObstacle16" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, -10.24345)
+
+[node name="ConeObstacle17" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, -13.183498)
+
+[node name="ConeObstacle18" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, -19.35057)
+
+[node name="ConeObstacle19" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -15.154064, 1.2, -21.21064)
+
+[node name="ConeObstacle20" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.169582, 1.2, -21.21064)
+
+[node name="ConeObstacle21" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.169582, 1.2, -19.709146)
+
+[node name="ConeObstacle22" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.169582, 1.2, -17.902899)
+
+[node name="ConeObstacle23" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 20.169582, 1.2, -16.103466)
+
+[node name="ConeObstacle24" parent="Mapa1" instance=ExtResource("4_0kpav")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -16.257988, 1.2, 19.63113)
+
+[node name="metal_obstacle" parent="Mapa1" instance=ExtResource("5_6gb3a")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 1.9, 16)
+
+[node name="metal_obstacle4" parent="Mapa1" instance=ExtResource("5_6gb3a")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -6.967262, 1.9, -28.051857)
+
+[node name="metal_obstacle5" parent="Mapa1" instance=ExtResource("5_6gb3a")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 12.125477, 1.9, -27.7629)
+
+[node name="metal_obstacle6" parent="Mapa1" instance=ExtResource("5_6gb3a")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -25.320763, 1.9, -7.575712)
+
+[node name="metal_obstacle7" parent="Mapa1" instance=ExtResource("5_6gb3a")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -25.320763, 1.9, 10.664541)
+
+[node name="metal_obstacle8" parent="Mapa1" instance=ExtResource("5_6gb3a")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 29.127274, 1.9, 16.629309)
+
+[node name="metal_obstacle9" parent="Mapa1" instance=ExtResource("5_6gb3a")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 29.127274, 1.9, -10.997135)
+
+[node name="metal_obstacle3" parent="Mapa1" instance=ExtResource("5_6gb3a")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -8.611459, 1.9, 16)
+
+[node name="metal_obstacle2" parent="Mapa1" instance=ExtResource("5_6gb3a")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 9.438, 1.9, 16)
+
+[node name="MovingPlataform" parent="Mapa1" instance=ExtResource("6_emxjo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 23.456797, 1.0550823, -21.745895)
+mode = 1
+move_amplitude = 4.0
+move_speed = 2.0
+
+[node name="MovingPlataform3" parent="Mapa1" instance=ExtResource("6_emxjo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 18.153614, 1.0550823, 24.677666)
+mode = 2
+move_speed = 2.0
+
+[node name="MovingPlataform4" parent="Mapa1" instance=ExtResource("6_emxjo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -23.078924, 1.0550823, -22.015875)
+mode = 2
+move_speed = 2.0
+
+[node name="MovingPlataform2" parent="Mapa1" instance=ExtResource("6_emxjo")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -20.012827, 1.0550823, 27.891602)
+mode = 1
+move_amplitude = 4.0
+move_speed = 2.0
+
+[node name="CarSpawn" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+shape = SubResource("BoxShape3D_q0up7")
+
+[node name="PowerUps" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_ngbav")
+
+[node name="CameraFollower" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 16, 0)
+fov = 90.0
+script = ExtResource("7_mpdsn")

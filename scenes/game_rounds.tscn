@@ -1,0 +1,15 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3q02ek4esrio"]
+
+[ext_resource type="Script" uid="uid://b1fsptmore1en" path="res://scripts/game_rounds.gd" id="1_ssfes"]
+[ext_resource type="PackedScene" uid="uid://b8pd72lg13cym" path="res://scenes/levels/level_instance_1.tscn" id="2_hmnpo"]
+[ext_resource type="PackedScene" uid="uid://dgfhkyfs50sww" path="res://scenes/levels/level_instance_2.tscn" id="3_if2rl"]
+[ext_resource type="PackedScene" uid="uid://dt1pgo8jfs24j" path="res://scenes/car.tscn" id="3_tnh8a"]
+[ext_resource type="PackedScene" uid="uid://ckp0po8valjkc" path="res://scenes/levels/level_instance_3.tscn" id="4_6ppie"]
+[ext_resource type="PackedScene" uid="uid://ydt14k1ho0yf" path="res://scenes/speed_powerup.tscn" id="4_43koy"]
+[ext_resource type="PackedScene" uid="uid://cny5rkxpvky2g" path="res://scenes/weight_powerup.tscn" id="5_if2rl"]
+
+[node name="GameRounds" type="Node3D"]
+script = ExtResource("1_ssfes")
+levels = Array[PackedScene]([ExtResource("2_hmnpo"), ExtResource("3_if2rl"), ExtResource("4_6ppie")])
+car_scene = ExtResource("3_tnh8a")
+powerups = Array[PackedScene]([ExtResource("4_43koy"), ExtResource("5_if2rl")])

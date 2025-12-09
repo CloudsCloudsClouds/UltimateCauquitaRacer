@@ -1,0 +1,128 @@
+[gd_scene load_steps=15 format=3 uid="uid://ckp0po8valjkc"]
+
+[ext_resource type="Script" uid="uid://ec3s57jmwntw" path="res://scripts/level_instance.gd" id="1_wiqtn"]
+[ext_resource type="Script" uid="uid://d23rp1m37a4he" path="res://scripts/camera_follower.gd" id="2_rcnl5"]
+[ext_resource type="Script" uid="uid://bi8ilff817lag" path="res://scenes/mapas/directional_light_3d.gd" id="3_5axg3"]
+[ext_resource type="Texture2D" uid="uid://cfyk4sn0w2ug0" path="res://assets/sprites/grass/tilable-IMG_0044-lush.png" id="4_gv2dj"]
+[ext_resource type="Texture2D" uid="uid://f6578c6mo60j" path="res://assets/sprites/grass/tilable-IMG_0044.png" id="5_8jryj"]
+[ext_resource type="PackedScene" uid="uid://5demtyrwtxd3" path="res://scenes/mapas/moving_plataform.tscn" id="6_sfoph"]
+[ext_resource type="PackedScene" uid="uid://drqlbi6rwlfpx" path="res://scenes/mapas/rolling_sphere.tscn" id="7_a63hc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ochxy"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_buv8s"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qmutd"]
+sky_horizon_color = Color(0.3301123, 0.69798905, 0.90226805, 1)
+
+[sub_resource type="Sky" id="Sky_b64jy"]
+sky_material = SubResource("ProceduralSkyMaterial_qmutd")
+
+[sub_resource type="Environment" id="Environment_kvvb3"]
+background_mode = 2
+sky = SubResource("Sky_b64jy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wp37b"]
+albedo_texture = ExtResource("4_gv2dj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f608v"]
+albedo_texture = ExtResource("5_8jryj")
+roughness = 0.8
+uv1_scale = Vector3(4, 4, 4)
+
+[node name="LevelInstance3" type="Node3D" node_paths=PackedStringArray("car_spawn_area", "power_spawn_area", "view_camera")]
+script = ExtResource("1_wiqtn")
+car_spawn_area = NodePath("PlayerSpawn")
+power_spawn_area = NodePath("Powerups")
+view_camera = NodePath("CameraFollower")
+metadata/_custom_type_script = "uid://ec3s57jmwntw"
+
+[node name="CameraFollower" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 16, 0)
+fov = 90.0
+script = ExtResource("2_rcnl5")
+
+[node name="PlayerSpawn" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0)
+shape = SubResource("BoxShape3D_ochxy")
+
+[node name="Powerups" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_buv8s")
+
+[node name="mapa3" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="mapa3"]
+environment = SubResource("Environment_kvvb3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="mapa3"]
+transform = Transform3D(0.9996771, -0.015637556, 0.020027399, -0.020863267, -0.9550584, 0.29568258, 0.014503582, -0.29600498, -0.9550763, -1.1395097, 12.581999, -0.2736163)
+light_color = Color(0.9107584, 0.36422545, 0.119221024, 1)
+light_energy = 2.0
+script = ExtResource("3_5axg3")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="mapa3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009757996, -0.044612885, 0.05149412)
+material_override = SubResource("StandardMaterial3D_wp37b")
+use_collision = true
+size = Vector3(70, 1, 70)
+material = SubResource("StandardMaterial3D_f608v")
+
+[node name="MovingPlataform3" parent="mapa3" instance=ExtResource("6_sfoph")]
+transform = Transform3D(-0.13759759, 0, -1.9952611, 0, 2, 0, 1.9952611, 0, -0.13759759, -26.597416, 0.73316, -4.237505)
+
+[node name="MovingPlataform4" parent="mapa3" instance=ExtResource("6_sfoph")]
+transform = Transform3D(-0.13759759, 0, -1.9952611, 0, 2, 0, 1.9952611, 0, -0.13759759, 28.397903, 0.8629694, -4.237505)
+
+[node name="MovingPlataform5" parent="mapa3" instance=ExtResource("6_sfoph")]
+transform = Transform3D(-0.13759759, 0, -1.9952611, 0, 2, 0, 1.9952611, 0, -0.13759759, 28.37204, 0.7331581, 22.922884)
+mode = 1
+move_amplitude = 4.0
+move_speed = 4.0
+
+[node name="MovingPlataform9" parent="mapa3" instance=ExtResource("6_sfoph")]
+transform = Transform3D(-0.13759759, 0, -1.9952611, 0, 2, 0, 1.9952611, 0, -0.13759759, -27.692425, 0.7331581, 22.922884)
+mode = 1
+move_amplitude = 4.0
+move_speed = 4.0
+
+[node name="MovingPlataform10" parent="mapa3" instance=ExtResource("6_sfoph")]
+transform = Transform3D(-0.13759759, 0, -1.9952611, 0, 2, 0, 1.9952611, 0, -0.13759759, -27.692425, 0.7331581, -23.847933)
+mode = 1
+move_amplitude = 4.0
+move_speed = 4.0
+
+[node name="MovingPlataform11" parent="mapa3" instance=ExtResource("6_sfoph")]
+transform = Transform3D(-0.13759759, 0, -1.9952611, 0, 2, 0, 1.9952611, 0, -0.13759759, 27.99706, 0.7331581, -24.146015)
+mode = 1
+move_amplitude = 4.0
+move_speed = 4.0
+
+[node name="MovingPlataform7" parent="mapa3" instance=ExtResource("6_sfoph")]
+transform = Transform3D(-1.9942389, 0, 0.15169767, 0, 2, 0, -0.15169767, 0, -1.9942389, -0.16941452, 0.7331581, 22.432396)
+mode = 1
+move_amplitude = 14.0
+
+[node name="MovingPlataform8" parent="mapa3" instance=ExtResource("6_sfoph")]
+transform = Transform3D(-1.9942389, 0, 0.15169767, 0, 2, 0, -0.15169767, 0, -1.9942389, -0.034397125, 0.7331581, -21.01341)
+mode = 1
+move_amplitude = 14.0
+
+[node name="RollingSphere" parent="mapa3" instance=ExtResource("7_a63hc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.929226, 1.1991434, 0)
+sync_to_physics = false
+floor_path = NodePath("../CSGBox3D")
+roll_speed_mul = 2.0
+
+[node name="RollingSphere2" parent="mapa3" instance=ExtResource("7_a63hc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.911013, 1.1991434, 0)
+sync_to_physics = false
+floor_path = NodePath("../CSGBox3D")
+roll_speed_mul = 2.0
+
+[node name="RollingSphere3" parent="mapa3" instance=ExtResource("7_a63hc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1748447, 1.1991434, 15.030454)
+sync_to_physics = false
+floor_path = NodePath("../CSGBox3D")
+roll_speed_mul = 2.0

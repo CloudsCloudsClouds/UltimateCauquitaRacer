@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://7bnkscbykkkl"]
 
 [ext_resource type="Script" uid="uid://bi8ilff817lag" path="res://scenes/mapas/directional_light_3d.gd" id="1_5f1d1"]
-[ext_resource type="Texture2D" uid="uid://hlgupwthr6x3" path="res://autoloads/assets/sprites/grass/tilable-IMG_0044_nm.png" id="2_wywkp"]
+[ext_resource type="Texture2D" uid="uid://hlgupwthr6x3" path="res://assets/sprites/grass/tilable-IMG_0044_nm.png" id="2_wywkp"]
 [ext_resource type="PackedScene" uid="uid://dt1pgo8jfs24j" path="res://scenes/car.tscn" id="3_cre3s"]
-[ext_resource type="Script" path="res://scripts/camera_follower.gd" id="4_syeqe"]
+[ext_resource type="Script" uid="uid://d23rp1m37a4he" path="res://scripts/camera_follower.gd" id="4_syeqe"]
 [ext_resource type="PackedScene" uid="uid://5demtyrwtxd3" path="res://scenes/mapas/moving_plataform.tscn" id="5_wywkp"]
 [ext_resource type="PackedScene" uid="uid://b7v6eoiicf4ow" path="res://scenes/mapas/metal_obstacle.tscn" id="6_cre3s"]
 

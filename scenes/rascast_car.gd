@@ -9,6 +9,8 @@
 #
 # Última actualización: Implementación de dirección analógica para una experiencia de
 # conducción más suave y sensible.
+#
+# Última última actualizacion: Ahora puedes matarte. 
 class_name PlayerCar
 extends RigidBody3D
 
@@ -53,6 +55,9 @@ var input: DeviceInput
 
 ## Señal emitida cuando el jugador asociado a este coche desea abandonar la partida (por ejemplo, al pulsar "join").
 signal leave
+
+## Seña emitida cuando el jugador asociado a este coche exclama adios mundo cruel
+signal destroy(car: PlayerCar)
 
 
 ## Inicializa el coche con el número de jugador y el ID del dispositivo de entrada.
@@ -99,6 +104,10 @@ func get_input() -> void:
 		# Solo soltamos el freno si no estamos acelerando.
 		if not input.is_action_pressed("accelerate"):
 			motor_input = 0
+	
+	# Frankie teardrop
+	if input.is_action_just_pressed("suicide"):
+		destroy_car()
 
 
 ## Calcula y aplica la rotación de las ruedas delanteras basada en la entrada de dirección.
@@ -268,3 +277,13 @@ func _do_single_wheel_suspension(ray: RaycastWheel) -> void:
 
 	var force_pos_offset := ray.wheel.global_position - global_position # Posición para aplicar la fuerza.
 	apply_force(force_vector, force_pos_offset) # Aplica la fuerza de suspensión.
+
+# Destroy!
+# You can't scape.
+func destroy_car() -> void:
+	ParticleManager.explode(global_position)
+	freeze = true
+	emit_signal("destroy", self)
+	visible = false
+	await get_tree().create_timer(2).timeout
+	queue_free()
