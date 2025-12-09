@@ -6,6 +6,7 @@ export_presets.cfg
 data_*/
 .tmp/
 .godot/
+exports/
 
 # OS-specific ignores
 .DS_Store
