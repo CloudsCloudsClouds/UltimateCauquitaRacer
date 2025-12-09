@@ -1,0 +1,75 @@
+[gd_scene load_steps=14 format=3 uid="uid://dwvt16ivjdi4a"]
+
+[ext_resource type="Script" uid="uid://ec3s57jmwntw" path="res://scripts/level_instance.gd" id="1_uac6c"]
+[ext_resource type="Script" uid="uid://d23rp1m37a4he" path="res://scripts/camera_follower.gd" id="2_t7rjl"]
+[ext_resource type="Script" uid="uid://bi8ilff817lag" path="res://scenes/mapas/directional_light_3d.gd" id="3_h7834"]
+[ext_resource type="Texture2D" uid="uid://cogb33wn0rpup" path="res://autoloads/assets/sprites/grass/tilable-IMG_0044-grey1.png" id="4_68e82"]
+[ext_resource type="Texture2D" uid="uid://f6578c6mo60j" path="res://autoloads/assets/sprites/grass/tilable-IMG_0044.png" id="5_anrad"]
+[ext_resource type="PackedScene" uid="uid://dnhsy14su6pti" path="res://scenes/mapas/big_ramp.tscn" id="6_gxy3e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ochxy"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c03hl"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i50y4"]
+sky_horizon_color = Color(0.3301123, 0.69798905, 0.90226805, 1)
+
+[sub_resource type="Sky" id="Sky_e6nqe"]
+sky_material = SubResource("ProceduralSkyMaterial_i50y4")
+
+[sub_resource type="Environment" id="Environment_lyryn"]
+background_mode = 2
+sky = SubResource("Sky_e6nqe")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i50y4"]
+albedo_texture = ExtResource("4_68e82")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ef06x"]
+albedo_texture = ExtResource("5_anrad")
+roughness = 0.8
+uv1_scale = Vector3(4, 4, 4)
+
+[node name="LevelInstance4" type="Node3D" node_paths=PackedStringArray("car_spawn_area", "power_spawn_area", "view_camera")]
+script = ExtResource("1_uac6c")
+car_spawn_area = NodePath("PlayerSpawn")
+power_spawn_area = NodePath("Powerups")
+view_camera = NodePath("CameraFollower")
+metadata/_custom_type_script = "uid://ec3s57jmwntw"
+
+[node name="CameraFollower" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 28, 0)
+fov = 90.0
+script = ExtResource("2_t7rjl")
+
+[node name="PlayerSpawn" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0)
+shape = SubResource("BoxShape3D_ochxy")
+
+[node name="Powerups" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_c03hl")
+
+[node name="Mapa4" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Mapa4"]
+environment = SubResource("Environment_lyryn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Mapa4"]
+transform = Transform3D(0.9996771, -0.015637556, 0.020027399, -0.020863267, -0.9550584, 0.29568258, 0.014503582, -0.29600498, -0.9550763, -1.1395097, 12.581999, -0.2736163)
+light_color = Color(0.7884163, 0.84149975, 0.9813692, 1)
+light_energy = 2.0
+script = ExtResource("3_h7834")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Mapa4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009757996, -0.044612885, 0.05149412)
+material_override = SubResource("StandardMaterial3D_i50y4")
+use_collision = true
+size = Vector3(70, 1, 70)
+material = SubResource("StandardMaterial3D_ef06x")
+
+[node name="BigRamp" parent="Mapa4" instance=ExtResource("6_gxy3e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.450256)
+
+[node name="BigRamp2" parent="Mapa4" instance=ExtResource("6_gxy3e")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 23.89524)

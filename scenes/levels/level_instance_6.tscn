@@ -1,0 +1,103 @@
+[gd_scene load_steps=16 format=3 uid="uid://d2g0guu8e31ai"]
+
+[ext_resource type="Script" uid="uid://ec3s57jmwntw" path="res://scripts/level_instance.gd" id="1_0lpu5"]
+[ext_resource type="Script" uid="uid://d23rp1m37a4he" path="res://scripts/camera_follower.gd" id="2_fd2ks"]
+[ext_resource type="PackedScene" uid="uid://drqlbi6rwlfpx" path="res://scenes/mapas/rolling_sphere.tscn" id="3_ty65e"]
+[ext_resource type="Script" uid="uid://bi8ilff817lag" path="res://scenes/mapas/directional_light_3d.gd" id="4_jne3l"]
+[ext_resource type="Texture2D" uid="uid://b5mm5pk1ld8qa" path="res://autoloads/assets/sprites/grass/tilable-IMG_0044-grey.png" id="5_f630w"]
+[ext_resource type="Texture2D" uid="uid://f6578c6mo60j" path="res://autoloads/assets/sprites/grass/tilable-IMG_0044.png" id="6_vgidx"]
+[ext_resource type="PackedScene" uid="uid://dnhsy14su6pti" path="res://scenes/mapas/big_ramp.tscn" id="7_dat0m"]
+[ext_resource type="PackedScene" uid="uid://5demtyrwtxd3" path="res://scenes/mapas/moving_plataform.tscn" id="8_001cj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ochxy"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_buv8s"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_62oci"]
+sky_horizon_color = Color(0.3301123, 0.69798905, 0.90226805, 1)
+
+[sub_resource type="Sky" id="Sky_e6nqe"]
+sky_material = SubResource("ProceduralSkyMaterial_62oci")
+
+[sub_resource type="Environment" id="Environment_rgpyp"]
+background_mode = 2
+sky = SubResource("Sky_e6nqe")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iek01"]
+albedo_texture = ExtResource("5_f630w")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_84pu6"]
+albedo_color = Color(1, 1, 0.29803923, 1)
+albedo_texture = ExtResource("6_vgidx")
+roughness = 0.8
+uv1_scale = Vector3(4, 4, 4)
+
+[node name="LevelInstance6" type="Node3D" node_paths=PackedStringArray("car_spawn_area", "power_spawn_area", "view_camera")]
+script = ExtResource("1_0lpu5")
+car_spawn_area = NodePath("PlayerSpawn")
+power_spawn_area = NodePath("Powerups")
+view_camera = NodePath("CameraFollower")
+metadata/_custom_type_script = "uid://ec3s57jmwntw"
+
+[node name="CameraFollower" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 16, 0)
+fov = 90.0
+script = ExtResource("2_fd2ks")
+
+[node name="PlayerSpawn" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0)
+shape = SubResource("BoxShape3D_ochxy")
+
+[node name="Powerups" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_buv8s")
+
+[node name="Mapa6" type="Node3D" parent="."]
+
+[node name="RollingSphere" parent="Mapa6" instance=ExtResource("3_ty65e")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 3.4573636, 0)
+sync_to_physics = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Mapa6"]
+environment = SubResource("Environment_rgpyp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Mapa6"]
+transform = Transform3D(0.9996771, -0.015637556, 0.020027399, -0.020863267, -0.9550584, 0.29568258, 0.014503582, -0.29600498, -0.9550763, -1.1395097, 12.581999, -0.2736163)
+light_color = Color(0.7884163, 0.84149975, 0.9813692, 1)
+light_energy = 2.0
+script = ExtResource("4_jne3l")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Mapa6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009757996, -0.044612885, 0.05149412)
+material_override = SubResource("StandardMaterial3D_iek01")
+use_collision = true
+size = Vector3(70, 1, 70)
+material = SubResource("StandardMaterial3D_84pu6")
+
+[node name="BigRamp" parent="Mapa6" instance=ExtResource("7_dat0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21.899067)
+
+[node name="MovingPlataform" parent="Mapa6" instance=ExtResource("8_001cj")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10.439354, 6.5072327, 15.722011)
+mode = 1
+move_amplitude = 6.0
+move_speed = 4.0
+
+[node name="MovingPlataform4" parent="Mapa6" instance=ExtResource("8_001cj")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 19.74188, 6.5072327, 15.722011)
+mode = 1
+move_amplitude = 6.0
+move_speed = 4.0
+
+[node name="MovingPlataform2" parent="Mapa6" instance=ExtResource("8_001cj")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13.229708, 6.5072327, 15.722011)
+mode = 1
+move_amplitude = 6.0
+move_speed = 4.0
+
+[node name="MovingPlataform3" parent="Mapa6" instance=ExtResource("8_001cj")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -22.15723, 6.5072327, 15.722011)
+mode = 1
+move_amplitude = 6.0
+move_speed = 4.0
