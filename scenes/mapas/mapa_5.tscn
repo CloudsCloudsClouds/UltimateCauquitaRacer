@@ -106,11 +106,14 @@ transform = Transform3D(-4.3711385e-08, -0.64278775, -0.76604426, 0, 0.7660443, 
 [node name="RollingSphere" parent="." instance=ExtResource("7_72q6l")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.9288275, -18.212326)
 sync_to_physics = false
+floor_path = NodePath("../CSGBox3D")
 
 [node name="RollingSphere2" parent="." instance=ExtResource("7_72q6l")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 12.363519, 1.8929448, 15.712381)
 sync_to_physics = false
+floor_path = NodePath("../CSGBox3D")
 roll_speed_mul = 2.0
+sphere_radius = 5.0
 
 [node name="MovingPlataform" parent="." instance=ExtResource("8_72q6l")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -12.875659, 5.497317, -4.1299186)
