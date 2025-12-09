@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 PlayerManager="*res://autoloads/player_manager.gd"
 ParticleManager="*res://autoloads/particle_manager.gd"
 GameManager="*res://autoloads/game_manager.gd"
+MultiplayerInput="*res://addons/multiplayer_input/multiplayer_input.gd"
 
 [dotnet]
 

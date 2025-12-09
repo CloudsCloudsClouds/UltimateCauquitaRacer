@@ -452,9 +452,8 @@ func get_random_powerup_spawn_position() -> Vector3:
 		current_level.power_spawn_area.global_transform
 	)
 
-# ============================================
+
 # HELPER FUNCTIONS
-# ============================================
 
 func get_random_point_in_box(box: BoxShape3D, shape_transform: Transform3D) -> Vector3:
 	if !box:
