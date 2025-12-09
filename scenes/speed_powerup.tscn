@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://ydt14k1ho0yf"]
 
 [ext_resource type="Script" uid="uid://dhcdlogenh1q5" path="res://scripts/powerups/PowerUpArea3D.gd" id="1_7p3yj"]
-[ext_resource type="Texture2D" uid="uid://biebnxjm3xbay" path="res://assets/sprites/clover/tileable-grass_clover_TT7010116.png" id="2_dk4ou"]
+[ext_resource type="Texture2D" uid="uid://biebnxjm3xbay" path="res://autoloads/assets/sprites/clover/tileable-grass_clover_TT7010116.png" id="2_dk4ou"]
 [ext_resource type="PackedScene" uid="uid://bbh8ocq3mw6mc" path="res://scenes/speed_effect.tscn" id="2_x34i4"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kw5ul"]

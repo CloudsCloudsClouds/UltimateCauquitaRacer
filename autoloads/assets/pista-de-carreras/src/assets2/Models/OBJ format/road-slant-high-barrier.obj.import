@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c5k4d1c6ktmk6"
+path="res://.godot/imported/road-slant-high-barrier.obj-91daea99f5ce33e18ff13af742fd88ee.mesh"
+
+[deps]
+
+files=["res://.godot/imported/road-slant-high-barrier.obj-91daea99f5ce33e18ff13af742fd88ee.mesh"]
+
+source_file="res://autoloads/assets/pista-de-carreras/src/assets2/Models/OBJ format/road-slant-high-barrier.obj"
+dest_files=["res://.godot/imported/road-slant-high-barrier.obj-91daea99f5ce33e18ff13af742fd88ee.mesh", "res://.godot/imported/road-slant-high-barrier.obj-91daea99f5ce33e18ff13af742fd88ee.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

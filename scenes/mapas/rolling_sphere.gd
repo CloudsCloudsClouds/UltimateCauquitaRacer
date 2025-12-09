@@ -1,3 +1,4 @@
+
 extends AnimatableBody3D
 
 # Piso del mapa (tu CSGBox3D)

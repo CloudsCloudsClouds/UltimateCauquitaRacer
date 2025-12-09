@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b27v5wdtlm1r5"
+path="res://.godot/imported/road-straight-barrier-half.obj-f5a1a3891741674c14c3eafa6f61e0ea.mesh"
+
+[deps]
+
+files=["res://.godot/imported/road-straight-barrier-half.obj-f5a1a3891741674c14c3eafa6f61e0ea.mesh"]
+
+source_file="res://autoloads/assets/pista-de-carreras/src/assets2/Models/OBJ format/road-straight-barrier-half.obj"
+dest_files=["res://.godot/imported/road-straight-barrier-half.obj-f5a1a3891741674c14c3eafa6f61e0ea.mesh", "res://.godot/imported/road-straight-barrier-half.obj-f5a1a3891741674c14c3eafa6f61e0ea.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
